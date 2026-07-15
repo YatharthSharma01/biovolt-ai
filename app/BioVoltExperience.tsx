@@ -1,5 +1,7 @@
 "use client";
 
+/* eslint-disable @next/next/no-img-element -- shared static GitHub Pages build */
+
 import { useEffect, useMemo, useRef, useState } from "react";
 
 type PaperKind = "Review" | "Primary research";
@@ -514,7 +516,7 @@ export function BioVoltExperience() {
           <div className="experiment-grid">
             <figure className="experiment-photo">
               <img
-                src="/images/historical-mfc-setup.png"
+                src="images/historical-mfc-setup.png"
                 alt="Historical double-chamber microbial fuel cell with amber anolyte, purple catholyte and salt bridge"
               />
               <figcaption>
@@ -533,7 +535,7 @@ export function BioVoltExperience() {
                 </dl>
               </div>
               <div className="electrode-record">
-                <img src="/images/graphite-electrodes.png" alt="Pair of pointed graphite rod electrodes" />
+                <img src="images/graphite-electrodes.png" alt="Pair of pointed graphite rod electrodes" />
                 <div>
                   <span className="record-state verify-state">Needs verification</span>
                   <h3>Achalnath Tools graphite rod</h3>
