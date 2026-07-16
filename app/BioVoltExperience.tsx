@@ -4,17 +4,15 @@
 
 import { useEffect, useMemo, useRef, useState } from "react";
 import { papers, type PaperKind } from "./researchData";
-import { auditRows, auditSummary } from "./literatureAudit";
 
-export type PageKey = "home" | "research" | "experiment" | "registry" | "twin" | "about";
+export type PageKey = "home" | "research" | "experiment" | "twin" | "about";
 
 const navItems: Array<{ key: PageKey; label: string; issue: string }> = [
   { key: "home", label: "Home", issue: "00" },
   { key: "research", label: "Research", issue: "01" },
   { key: "experiment", label: "Experiment", issue: "02" },
-  { key: "registry", label: "Registry", issue: "03" },
-  { key: "twin", label: "Digital twin", issue: "04" },
-  { key: "about", label: "About", issue: "05" },
+  { key: "twin", label: "Digital twin", issue: "03" },
+  { key: "about", label: "About", issue: "04" },
 ];
 
 const growthData = [
@@ -26,7 +24,6 @@ const staticPageHrefs: Record<PageKey, string> = {
   home: "./index.html",
   research: "./research.html",
   experiment: "./experiment.html",
-  registry: "./registry.html",
   twin: "./digital-twin.html",
   about: "./about.html",
 };
@@ -35,7 +32,6 @@ const hostedPageHrefs: Record<PageKey, string> = {
   home: "/",
   research: "/research",
   experiment: "/experiment",
-  registry: "/registry",
   twin: "/digital-twin",
   about: "/about",
 };
@@ -45,7 +41,7 @@ function pageHref(page: PageKey, staticMode: boolean) {
 }
 
 function SiteHeader({ active, staticMode = false, overHero = false }: {
-  active: PageKey;
+  active: PageKey | "registry";
   staticMode?: boolean;
   overHero?: boolean;
 }) {
@@ -268,16 +264,7 @@ export function ResearchView({ staticMode = false }: { staticMode?: boolean }) {
           {[['Biology','Organism / inoculum / mediator'],['Reactor','Architecture / volume / membrane'],['Operation','pH / temperature / HRT / resistance'],['Electrochemistry','Voltage / current / power density'],['Treatment','COD in / COD out / removal'],['Quality','Replicates / uncertainty / validation']].map(([group, fields]) => <div role="row" key={group}><b role="cell">{group}</b><span role="cell">{fields}</span><i role="cell">Required</i></div>)}
         </div>
       </section>
-      <section className="paper-spread audit-stage-section">
-        <SectionLabel number="01.3">Literature-audit stage</SectionLabel>
-        <div className="audit-stage-copy"><p className="journal-kicker">Condition-level evidence / version 0.1</p><h2>Every number keeps its experimental address.</h2><p>The future estimator will use these rows as evidence anchors. Review papers define variables and mechanisms; primary studies provide condition-level measurements. Blank fields are genuinely unreported, and flagged rows are kept out of numerical pooling.</p><div className="audit-actions"><a href={staticMode ? "./audit/literature-audit.csv" : "/audit/literature-audit.csv"}>Download evidence matrix ↗</a><a href={staticMode ? "./audit/audit-manifest.json" : "/audit/audit-manifest.json"}>Open audit manifest ↗</a></div></div>
-        <div className="audit-stat-grid"><p><strong>{auditSummary.conditionRows}</strong><span>Condition rows</span></p><p><strong>{auditSummary.calculatorBenchmarks}</strong><span>Calculator benchmarks</span></p><p><strong>{auditSummary.flaggedRows}</strong><span>Rows with quality flags</span></p><p><strong>{auditSummary.privateRows}</strong><span>Private-source rows</span></p></div>
-        <div className="audit-table" role="table" aria-label="Condition-level literature audit matrix">
-          <div className="audit-table-row audit-table-head" role="row"><b role="columnheader">Condition</b><b role="columnheader">Biology / substrate</b><b role="columnheader">Electrical context</b><b role="columnheader">Treatment / use</b></div>
-          {auditRows.map((row) => <details className="audit-table-row" key={row.conditionId}><summary><span><b>{row.conditionId}</b><small>{row.paperRecord} / {row.evidenceKind}</small></span><span>{row.microbe}<small>{row.substrate}</small></span><span>{row.voltageV == null ? "Voltage not reported" : `${Math.round(row.voltageV * 1000)} mV`}{row.externalResistanceOhm == null ? "" : ` at ${row.externalResistanceOhm} Ω`}<small>{row.powerDensityMwM2 == null ? "Power density not reported" : `${row.powerDensityMwM2} mW/m²`}</small></span><span>{row.codRemovalPercent == null ? "No COD value" : `${row.codRemovalPercent}% COD removal`}<small>{row.use}</small></span></summary><div className="audit-row-detail"><p><b>Configuration.</b> {row.anode}; {row.cathode}; {row.reactor}.</p><p><b>Source.</b> {row.sourceLocator}. {row.access === "Private reviewed" ? "Private source: derived fields only; original PDF is not redistributed." : ""}</p><p><b>Quality flag.</b> {row.qualityFlag}</p></div></details>)}
-        </div>
-      </section>
-      <section className="paper-spread editorial-note"><SectionLabel number="01.4">Editorial &amp; access policy</SectionLabel><blockquote>The library publishes analysis, not copies of the papers.</blockquote><p>BioVolt AI links to DOI or publisher records and displays original summaries, citations and selected reported measurements. PDF 11 was reviewed for research purposes but is not hosted because a redistribution licence was not confirmed. PDF 3 was a publisher security page, so that supporting record is limited to verified metadata and abstract-level evidence.</p></section>
+      <section className="paper-spread editorial-note"><SectionLabel number="01.3">Editorial &amp; access policy</SectionLabel><blockquote>The library publishes analysis, not copies of the papers.</blockquote><p>BioVolt AI links to DOI or publisher records and displays original summaries, citations and selected reported measurements. PDF 11 was reviewed for research purposes but is not hosted because a redistribution licence was not confirmed. PDF 3 was a publisher security page, so that supporting record is limited to verified metadata and abstract-level evidence.</p></section>
       <NextArticle page="experiment" label="02 — College experiment" staticMode={staticMode} />
       <SiteFooter staticMode={staticMode} />
     </main>
@@ -379,7 +366,7 @@ export function ExperimentView({ staticMode = false }: { staticMode?: boolean })
         <figure><GrowthCurve /><figcaption><b>Figure 5.</b> Reconstructed from the supplied spreadsheet. Time units, measurement wavelength and replicate count remain unconfirmed, so this record is not merged with the halophile experiment.</figcaption></figure>
       </section>
       <section className="paper-spread provenance-ledger"><SectionLabel number="02.10">Evidence provenance</SectionLabel>{[["Measured","Values retained in spreadsheet"],["Documented","Text or result recorded in presentation"],["Image-derived","Approximate value interpreted from graph or photograph"],["Missing","Required value absent from supplied record"]].map(([label, copy]) => <div key={label}><i className={`provenance-dot ${label.toLowerCase()}`} /><b>{label}</b><span>{copy}</span></div>)}</section>
-      <NextArticle page="registry" label="03 — Experiment registry" staticMode={staticMode} />
+      <NextArticle page="twin" label="03 — Digital twin" staticMode={staticMode} />
       <SiteFooter staticMode={staticMode} />
     </main>
   );
@@ -550,17 +537,17 @@ export function DigitalTwinView({ staticMode = false }: { staticMode?: boolean }
   return (
     <main className="site-shell paper-page">
       <SiteHeader active="twin" staticMode={staticMode} />
-      <PageMasthead number="04" kicker="Predictive system preview / transparent by design" title="Intelligence for living electricity." abstract="The planned intelligence layer will predict power density and COD removal, detect anomalies and recommend experiments—while displaying uncertainty and evidence boundaries beside every output." />
-      <section className="paper-spread twin-section"><SectionLabel number="04.1">Interactive demonstration</SectionLabel><div className="twin-intro"><h2>Explore an illustrative response surface.</h2><p>Adjust the controls to test the product interaction. The mathematical response is synthetic and deliberately labelled so it cannot be mistaken for a trained scientific model.</p></div><TwinControls /></section>
-      <section className="paper-spread system-architecture"><SectionLabel number="04.2">System architecture</SectionLabel><div className="architecture-flow">{[['01','Inputs','pH, temperature, resistance, HRT'],['02','Evidence layer','Experiments + verified literature'],['03','Prediction','Power density + COD removal'],['04','Explanation','Intervals + feature importance'],['05','Decision','Recommended next experiment']].map(([num, title, copy]) => <article key={num}><span>{num}</span><h2>{title}</h2><p>{copy}</p></article>)}</div></section>
+      <PageMasthead number="03" kicker="Predictive system preview / transparent by design" title="Intelligence for living electricity." abstract="The planned intelligence layer will predict power density and COD removal, detect anomalies and recommend experiments—while displaying uncertainty and evidence boundaries beside every output." />
+      <section className="paper-spread twin-section"><SectionLabel number="03.1">Interactive demonstration</SectionLabel><div className="twin-intro"><h2>Explore an illustrative response surface.</h2><p>Adjust the controls to test the product interaction. The mathematical response is synthetic and deliberately labelled so it cannot be mistaken for a trained scientific model.</p></div><TwinControls /></section>
+      <section className="paper-spread system-architecture"><SectionLabel number="03.2">System architecture</SectionLabel><div className="architecture-flow">{[['01','Inputs','pH, temperature, resistance, HRT'],['02','Evidence layer','Experiments + verified literature'],['03','Prediction','Power density + COD removal'],['04','Explanation','Intervals + feature importance'],['05','Decision','Recommended next experiment']].map(([num, title, copy]) => <article key={num}><span>{num}</span><h2>{title}</h2><p>{copy}</p></article>)}</div></section>
       <section className="paper-spread model-output-grid">
-        <SectionLabel number="04.3">Planned outputs</SectionLabel>
+        <SectionLabel number="03.3">Planned outputs</SectionLabel>
         {[
           ['Power-density prediction','Gradient-boosting regression with grouped validation.'],['COD-removal prediction','Treatment outcome with calibrated intervals.'],['Anomaly detection','Sensor drift, sudden decline and domain warnings.'],['Fouling alert','Evidence-led performance decline classification.'],['Feature importance','SHAP or permutation importance after validation.'],['Next experiment','Constrained recommendation, never unrestricted optimization.']
         ].map(([title, copy], i) => <article key={title}><span>{String(i + 1).padStart(2,'0')}</span><h2>{title}</h2><p>{copy}</p></article>)}
       </section>
-      <section className="paper-spread recommendation-panel"><SectionLabel number="04.4">Recommended next experiment</SectionLabel><div><p className="journal-kicker">Current recommendation / data acquisition</p><h2>Repeat the historical configuration with complete metadata.</h2><p>Record voltage over time, external resistance, exposed electrode area, temperature, pH, conductivity, COD before and after treatment, HRT and inoculum details. This creates the first trustworthy training row.</p></div><aside><b>Priority 01</b><span>Recover electrode dimensions</span><b>Priority 02</b><span>Confirm growth-curve units</span><b>Priority 03</b><span>Collect a polarization series</span></aside></section>
-      <NextArticle page="about" label="05 — Project method" staticMode={staticMode} />
+      <section className="paper-spread recommendation-panel"><SectionLabel number="03.4">Recommended next experiment</SectionLabel><div><p className="journal-kicker">Current recommendation / data acquisition</p><h2>Repeat the historical configuration with complete metadata.</h2><p>Record voltage over time, external resistance, exposed electrode area, temperature, pH, conductivity, COD before and after treatment, HRT and inoculum details. This creates the first trustworthy training row.</p></div><aside><b>Priority 01</b><span>Recover electrode dimensions</span><b>Priority 02</b><span>Confirm growth-curve units</span><b>Priority 03</b><span>Collect a polarization series</span></aside></section>
+      <NextArticle page="about" label="04 — Project method" staticMode={staticMode} />
       <SiteFooter staticMode={staticMode} />
     </main>
   );
@@ -570,13 +557,13 @@ export function AboutView({ staticMode = false }: { staticMode?: boolean }) {
   return (
     <main className="site-shell paper-page">
       <SiteHeader active="about" staticMode={staticMode} />
-      <PageMasthead number="05" kicker="Project method / open research infrastructure" title="Build slowly enough to remain scientifically useful." abstract="BioVolt AI is a flagship project, but its credibility will come from traceable evidence, disciplined data collection and models that admit when they do not know." />
-      <section className="paper-spread manifesto"><SectionLabel number="05.1">Manifesto</SectionLabel><p>BioVolt AI should feel advanced without pretending that sparse historical evidence is a production-ready digital twin. The platform therefore separates the research archive, experimental record and predictive layer—and keeps their provenance visible.</p><aside><span>01</span><b>Evidence before automation.</b><span>02</span><b>Uncertainty before certainty.</b><span>03</span><b>Reproducibility before scale.</b></aside></section>
-      <section className="paper-spread roadmap"><SectionLabel number="05.2">Development roadmap</SectionLabel>{[
+      <PageMasthead number="04" kicker="Project method / open research infrastructure" title="Build slowly enough to remain scientifically useful." abstract="BioVolt AI is a flagship project, but its credibility will come from traceable evidence, disciplined data collection and models that admit when they do not know." />
+      <section className="paper-spread manifesto"><SectionLabel number="04.1">Manifesto</SectionLabel><p>BioVolt AI should feel advanced without pretending that sparse historical evidence is a production-ready digital twin. The platform therefore separates the research archive, experimental record and predictive layer—and keeps their provenance visible.</p><aside><span>01</span><b>Evidence before automation.</b><span>02</span><b>Uncertainty before certainty.</b><span>03</span><b>Reproducibility before scale.</b></aside></section>
+      <section className="paper-spread roadmap"><SectionLabel number="04.2">Development roadmap</SectionLabel>{[
         ['Now','Research platform','Multipage evidence library, recovered experiment and synthetic twin interface.'],['Next','Data foundation','Verified papers, normalized experiment schema and manual data entry.'],['Then','Validated models','Grouped cross-validation, intervals, importance and anomaly detection.'],['Later','Live MFC','ESP32 sensing, streaming dashboard, alerts and controlled recommendations.']
       ].map(([phase, title, copy], index) => <article key={phase}><span>{String(index + 1).padStart(2,'0')}</span><p>{phase}</p><h2>{title}</h2><div><i /><p>{copy}</p></div></article>)}</section>
-      <section className="paper-spread author-note"><SectionLabel number="05.3">Author note</SectionLabel><div><p className="journal-kicker">Researcher</p><h2>Yatharth Sharma</h2><p>The platform begins with previous college work on microbial fuel cells, halophilic isolates and Pseudomonas growth. It will evolve as papers, laboratory notes and new experiments are added.</p><div className="author-links"><a href="mailto:yatharth.01sharma@gmail.com">Email ↗</a><a href="https://www.linkedin.com/in/yatharth-sharma-a13395288/" target="_blank" rel="noreferrer">LinkedIn ↗</a><a href="https://github.com/YatharthSharma01/biovolt-ai" target="_blank" rel="noreferrer">Open-source repository ↗</a></div></div><blockquote>“From microbial metabolism to measurable electricity.”</blockquote></section>
-      <section className="paper-spread repository-note"><SectionLabel number="05.4">Open source</SectionLabel><h2>Inspect the work, not only the interface.</h2><p>The public repository contains the complete website source and automated publishing workflow. Future data and model documentation will be versioned alongside the product.</p><a href="https://github.com/YatharthSharma01/biovolt-ai" target="_blank" rel="noreferrer">github.com/YatharthSharma01/biovolt-ai ↗</a></section>
+      <section className="paper-spread author-note"><SectionLabel number="04.3">Author note</SectionLabel><div><p className="journal-kicker">Researcher</p><h2>Yatharth Sharma</h2><p>The platform begins with previous college work on microbial fuel cells, halophilic isolates and Pseudomonas growth. It will evolve as papers, laboratory notes and new experiments are added.</p><div className="author-links"><a href="mailto:yatharth.01sharma@gmail.com">Email ↗</a><a href="https://www.linkedin.com/in/yatharth-sharma-a13395288/" target="_blank" rel="noreferrer">LinkedIn ↗</a><a href="https://github.com/YatharthSharma01/biovolt-ai" target="_blank" rel="noreferrer">Open-source repository ↗</a></div></div><blockquote>“From microbial metabolism to measurable electricity.”</blockquote></section>
+      <section className="paper-spread repository-note"><SectionLabel number="04.4">Open source</SectionLabel><h2>Inspect the work, not only the interface.</h2><p>The public repository contains the complete website source and automated publishing workflow. Future data and model documentation will be versioned alongside the product.</p><a href="https://github.com/YatharthSharma01/biovolt-ai" target="_blank" rel="noreferrer">github.com/YatharthSharma01/biovolt-ai ↗</a></section>
       <NextArticle page="home" label="Return to cover" staticMode={staticMode} />
       <SiteFooter staticMode={staticMode} />
     </main>

@@ -2,12 +2,11 @@ import assert from "node:assert/strict";
 import { access, readFile } from "node:fs/promises";
 import test from "node:test";
 
-test("GitHub Pages build contains six linked page entries", async () => {
+test("GitHub Pages build contains five linked page entries", async () => {
   const pages = [
     ["index.html", "home"],
     ["research.html", "research"],
     ["experiment.html", "experiment"],
-    ["registry.html", "registry"],
     ["digital-twin.html", "twin"],
     ["about.html", "about"],
   ];
@@ -26,9 +25,11 @@ test("static navigation points to every research article", async () => {
   const scriptPath = html.match(/src="(\.\/assets\/[^\"]+\.js)"/)?.[1];
   assert.ok(scriptPath);
   const bundle = await readFile(`github-dist/${scriptPath.slice(2)}`, "utf8");
-  for (const href of ["research.html", "experiment.html", "registry.html", "digital-twin.html", "about.html"]) {
+  for (const href of ["research.html", "experiment.html", "digital-twin.html", "about.html"]) {
     assert.match(bundle, new RegExp(href.replace(".", "\\.")));
   }
+  assert.doesNotMatch(bundle, /registry\.html/);
+  assert.doesNotMatch(bundle, /Literature-audit stage/);
 });
 
 test("historical MFC images are included in the static artifact", async () => {
@@ -46,16 +47,11 @@ test("historical MFC images are included in the static artifact", async () => {
   ]);
 });
 
-test("literature audit artifacts are included in the static artifact", async () => {
+test("retired registry and audit surfaces are absent", async () => {
   await Promise.all([
-    access("github-dist/audit/literature-audit.csv"),
-    access("github-dist/audit/paper-register.csv"),
-    access("github-dist/audit/audit-manifest.json"),
+    assert.rejects(access("github-dist/registry.html")),
+    assert.rejects(access("github-dist/audit/literature-audit.csv")),
+    assert.rejects(access("github-dist/audit/paper-register.csv")),
+    assert.rejects(access("github-dist/audit/audit-manifest.json")),
   ]);
-  const html = await readFile("github-dist/research.html", "utf8");
-  const scriptPath = html.match(/src="(\.\/assets\/[^\"]+\.js)"/)?.[1];
-  assert.ok(scriptPath);
-  const bundle = await readFile(`github-dist/${scriptPath.slice(2)}`, "utf8");
-  assert.match(bundle, /literature-audit\.csv/);
-  assert.match(bundle, /audit-manifest\.json/);
 });
