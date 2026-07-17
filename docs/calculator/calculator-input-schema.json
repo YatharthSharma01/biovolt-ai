@@ -1,0 +1,88 @@
+{
+  "schemaVersion": "0.1",
+  "product": "BioVolt AI MFC Calculator",
+  "scope": "single_cell",
+  "modes": ["measured", "literature"],
+  "groups": [
+    {
+      "id": "system",
+      "label": "System",
+      "fields": [
+        {"id": "calculator_mode", "type": "enum", "required": true, "options": ["measured", "literature"]},
+        {"id": "cell_scope", "type": "enum", "required": true, "options": ["single_cell"], "reject": ["stack"]},
+        {"id": "reactor_architecture", "type": "enum", "requiredFor": ["literature"], "options": ["single_chamber", "double_chamber", "other", "unknown"]},
+        {"id": "operation_mode", "type": "enum", "requiredFor": ["literature"], "options": ["batch", "continuous", "fed_batch", "unknown"]},
+        {"id": "working_volume_ml", "type": "number", "unit": "mL", "minimumExclusive": 0},
+        {"id": "membrane_or_bridge", "type": "string", "allowUnknown": true},
+        {"id": "electrode_spacing_cm", "type": "number", "unit": "cm", "minimumExclusive": 0},
+        {"id": "cathode_electron_acceptor", "type": "string", "allowUnknown": true}
+      ]
+    },
+    {
+      "id": "biology_substrate",
+      "label": "Biology & substrate",
+      "fields": [
+        {"id": "organism", "type": "string", "requiredFor": ["literature"], "allowUnknown": true},
+        {"id": "culture_type", "type": "enum", "requiredFor": ["literature"], "options": ["pure", "mixed", "environmental", "unknown"]},
+        {"id": "inoculum_source", "type": "string", "allowUnknown": true},
+        {"id": "biofilm_age_days", "type": "number", "unit": "day", "minimum": 0},
+        {"id": "mediator", "type": "enum", "options": ["none", "endogenous", "exogenous", "unknown"]},
+        {"id": "substrate", "type": "string", "requiredFor": ["literature"], "allowUnknown": true},
+        {"id": "substrate_concentration_g_l", "type": "number", "unit": "g/L", "minimum": 0},
+        {"id": "cod_in_mg_l", "type": "number", "unit": "mg/L", "minimum": 0},
+        {"id": "cod_out_mg_l", "type": "number", "unit": "mg/L", "minimum": 0}
+      ]
+    },
+    {
+      "id": "electrodes",
+      "label": "Electrodes",
+      "fields": [
+        {"id": "anode_material", "type": "string", "requiredFor": ["literature"], "allowUnknown": true},
+        {"id": "cathode_material", "type": "string", "requiredFor": ["literature"], "allowUnknown": true},
+        {"id": "anode_area_cm2", "type": "number", "unit": "cm2", "minimumExclusive": 0},
+        {"id": "cathode_area_cm2", "type": "number", "unit": "cm2", "minimumExclusive": 0},
+        {"id": "area_basis", "type": "enum", "options": ["anode_geometric", "cathode_geometric", "projected", "specific", "unknown"]},
+        {"id": "surface_treatment", "type": "string", "allowUnknown": true},
+        {"id": "catalyst_or_coating", "type": "string", "allowUnknown": true},
+        {"id": "electrode_conductivity_s_m", "type": "number", "unit": "S/m", "minimum": 0, "provenanceRequired": true}
+      ]
+    },
+    {
+      "id": "operation",
+      "label": "Operation",
+      "fields": [
+        {"id": "temperature_c", "type": "number", "unit": "degC", "minimum": 0, "maximum": 80},
+        {"id": "ph", "type": "number", "unit": "pH", "minimum": 0, "maximum": 14},
+        {"id": "salinity_g_l", "type": "number", "unit": "g/L", "minimum": 0},
+        {"id": "conductivity_ms_cm", "type": "number", "unit": "mS/cm", "minimum": 0},
+        {"id": "load_mode", "type": "enum", "required": true, "options": ["resistor", "open_circuit", "short_circuit"]},
+        {"id": "external_resistance_ohm", "type": "number", "unit": "ohm", "minimumExclusive": 0, "requiredWhen": {"load_mode": "resistor"}},
+        {"id": "hrt_hours", "type": "number", "unit": "h", "minimumExclusive": 0},
+        {"id": "flow_rate_l_day", "type": "number", "unit": "L/day", "minimumExclusive": 0},
+        {"id": "duration_hours", "type": "number", "unit": "h", "minimumExclusive": 0}
+      ]
+    },
+    {
+      "id": "measurements",
+      "label": "Measurements",
+      "fields": [
+        {"id": "loaded_voltage_v", "type": "number", "unit": "V", "minimum": 0},
+        {"id": "measured_current_ma", "type": "number", "unit": "mA", "minimum": 0},
+        {"id": "open_circuit_voltage_v", "type": "number", "unit": "V", "minimum": 0, "neverSubstituteFor": "loaded_voltage_v"},
+        {"id": "reported_power_density_mw_m2", "type": "number", "unit": "mW/m2", "minimum": 0, "areaBasisRequired": true},
+        {"id": "reported_current_density_ma_m2", "type": "number", "unit": "mA/m2", "minimum": 0, "areaBasisRequired": true},
+        {"id": "replicate_count", "type": "integer", "minimum": 1},
+        {"id": "uncertainty_value", "type": "number", "minimum": 0},
+        {"id": "uncertainty_statistic", "type": "enum", "options": ["sd", "se", "ci", "range", "unknown"]}
+      ]
+    }
+  ],
+  "resultClasses": ["calculated", "literature_reference", "literature_estimate", "model_prediction"],
+  "evidenceTiers": {
+    "high": {"minimumScore": 0.8, "minimumIndependentPapers": 3, "minimumConditions": 5},
+    "moderate": {"minimumScore": 0.65, "minimumIndependentPapers": 2, "minimumConditions": 3},
+    "low": {"minimumScore": 0.45},
+    "outside_domain": {"maximumScoreExclusive": 0.45, "minimumComparableWeight": 0.5}
+  }
+}
+

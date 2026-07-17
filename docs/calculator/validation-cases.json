@@ -1,0 +1,89 @@
+{
+  "specificationVersion": "0.1",
+  "tolerance": {
+    "absolute": 0.000001,
+    "displayDecimalPlaces": 2
+  },
+  "cases": [
+    {
+      "id": "CALC-EXACT-001",
+      "title": "Formula-consistent measured MFC",
+      "mode": "measured",
+      "inputs": {
+        "cell_scope": "single_cell",
+        "load_mode": "resistor",
+        "loaded_voltage_v": 0.5,
+        "external_resistance_ohm": 1000,
+        "measured_current_ma": 0.5,
+        "anode_area_cm2": 25,
+        "area_basis": "anode_geometric",
+        "cod_in_mg_l": 1000,
+        "cod_out_mg_l": 400,
+        "duration_hours": 24
+      },
+      "expected": {
+        "current_ma": 0.5,
+        "power_mw": 0.25,
+        "current_density_ma_m2": 200,
+        "power_density_mw_m2": 100,
+        "cod_removal_percent": 60,
+        "energy_mwh": 6,
+        "result_class": "calculated",
+        "warning_codes": []
+      }
+    },
+    {
+      "id": "CALC-RECONCILE-002",
+      "title": "PDF 1 glucose condition exposes normalization conflict",
+      "mode": "measured",
+      "sourceConditionId": "BV-LIT-009-G-100",
+      "inputs": {
+        "cell_scope": "single_cell",
+        "load_mode": "resistor",
+        "loaded_voltage_v": 0.202,
+        "external_resistance_ohm": 100,
+        "anode_area_cm2": 15,
+        "area_basis": "anode_geometric",
+        "reported_current_density_ma_m2": 673,
+        "reported_power_density_mw_m2": 136
+      },
+      "expected": {
+        "current_ma": 2.02,
+        "power_mw": 0.40804,
+        "current_density_ma_m2": 1346.666667,
+        "power_density_mw_m2": 272.026667,
+        "result_class": "calculated",
+        "warning_codes": ["REPORTED_CURRENT_DENSITY_MISMATCH", "REPORTED_POWER_DENSITY_MISMATCH", "SEVERE_RECONCILIATION_CONFLICT"],
+        "literature_behavior": "Preserve the reported values beside recalculated values and exclude this row from deterministic training."
+      }
+    },
+    {
+      "id": "CALC-DOMAIN-003",
+      "title": "Unsupported configuration refuses a numerical estimate",
+      "mode": "literature",
+      "inputs": {
+        "cell_scope": "single_cell",
+        "reactor_architecture": "other",
+        "operation_mode": "continuous",
+        "organism": "algal biocathode community",
+        "culture_type": "mixed",
+        "substrate": "lignin-rich industrial waste",
+        "anode_material": "graphene aerogel",
+        "cathode_material": "living algal biocathode",
+        "temperature_c": 55,
+        "ph": 4,
+        "salinity_g_l": 100,
+        "load_mode": "resistor",
+        "external_resistance_ohm": 750
+      },
+      "expected": {
+        "result_class": "literature_reference",
+        "numerical_estimate": null,
+        "evidence_tier": "outside_domain",
+        "warning_codes": ["OUTSIDE_EVIDENCE_DOMAIN", "INSUFFICIENT_INDEPENDENT_STUDIES"],
+        "user_message": "No responsible numerical estimate is available for this configuration."
+      }
+    }
+  ]
+}
+

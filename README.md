@@ -24,6 +24,15 @@ demonstration.
 The digital-twin outputs in this release are illustrative. They are not trained
 predictions and must not be used to operate an MFC.
 
+## MFC calculator development
+
+Phase 1 defines the calculator's scientific and usability contract before the
+public interface is implemented:
+
+- [Scientific specification](docs/calculator/SCIENTIFIC_SPECIFICATION.md)
+- [Machine-readable input schema](docs/calculator/calculator-input-schema.json)
+- [Validation and refusal cases](docs/calculator/validation-cases.json)
+
 ## Run locally
 
 Requirements: Node.js 22.13 or newer.

@@ -4,8 +4,8 @@ This is the evidence-preparation stage for the future MFC estimator. It is not a
 
 ## What is included
 
-- `public/audit/literature-audit.csv` is a flat, condition-level evidence matrix.
-- `app/literatureAudit.ts` is the typed source used by the research page.
+- `audit/Literature_Audit.xlsx` is the reviewable condition-level workbook.
+- `app/literatureAudit.ts` is the retained typed evidence source for calculator preparation; it is not displayed on the public site.
 - The paper register remains in `app/researchData.ts` and contains 12 core records plus 2 supporting records.
 
 One paper can create several rows when it compares substrates, salinities, resistances or reactor modes. A missing value is left blank rather than inferred.
@@ -24,6 +24,6 @@ One paper can create several rows when it compares substrates, salinities, resis
 
 Rows marked `Do not pool` or `Context only` should not enter a numerical model. Rows marked `Calculator benchmark` can support a nearest-evidence estimate only when the reactor, load, normalization and biological context are sufficiently similar.
 
-## Next gate before calculator work
+## Calculator specification gate
 
-The matrix should be reviewed for unit interpretation, especially electrode-area basis, starch concentration in PDF 11, and the internal normalization inconsistencies reported in PDF 1. After that review, the calculator can use the electrical equations for exact measured inputs and literature ranges for evidence-anchored estimates.
+The matrix still requires review of electrode-area basis, starch concentration in PDF 11, and the internal normalization inconsistencies reported in PDF 1. The approved calculator contract is developed in `docs/calculator/SCIENTIFIC_SPECIFICATION.md`. Formula calculations may proceed independently, while literature estimates remain gated by evidence eligibility and reconciliation rules.
