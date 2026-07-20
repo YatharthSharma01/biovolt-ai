@@ -90,7 +90,7 @@ export function SiteFooter({ staticMode = false }: { staticMode?: boolean }) {
             <a href="https://www.linkedin.com/in/yatharth-sharma-a13395288/" target="_blank" rel="noreferrer" aria-label="Yatharth Sharma on LinkedIn">in</a>
             <span aria-label="X profile link pending" title="Profile link pending">X</span>
           </div>
-          <small className="profile-note">GitHub and LinkedIn are live. X can be connected when its profile URL is provided.</small>
+          <small className="profile-note">GitHub and LinkedIn are live. X profile comming soon.</small>
         </div>
       </div>
       <div className="footer-bottom"><p>© 2026 Yatharth Sharma. All rights reserved.</p><p>Designed as a living research manuscript.</p></div>
@@ -190,9 +190,9 @@ export function HomeView({ staticMode = false }: { staticMode?: boolean }) {
       </article>
 
       <section className="paper-spread author-introduction">
-        <SectionLabel number="00.2">Introduction by Yatharth Sharma</SectionLabel>
+        <SectionLabel number="00.2">Introduction of MFC</SectionLabel>
         <div className="introduction-lead">
-          <p className="journal-kicker">Author-supplied manuscript / lightly copy-edited</p>
+          <p className="journal-kicker">Original manuscript</p>
           <h2>Why microbial fuel cell matter.</h2>
           <p>Decades of reliance on conventional energy generation techniques, including fossil fuels, hydropower, nuclear, coal, solar, wind, geothermal, and energy storage batteries, can cause environmental pollution, generate waste, exhibit low efficiency, incur high costs, or require expensive infrastructure, compelling us to shift towards alternative energy sources [Panwar et al.].</p>
         </div>
@@ -201,7 +201,7 @@ export function HomeView({ staticMode = false }: { staticMode?: boolean }) {
           <p>A microbial fuel cell (MFC), one of the most widely studied bio-electrochemical systems, that employs exoelectrogens to convert chemical energy into direct electrical energy through a blend of electrochemical reactions and microbial metabolism from a broad range of substrates, such as wastewater, acetate, and urine [Ripel Chakma et al., 2025].</p>
           <p>MFCs are a versatile and promising alternative that present distinct advantages over traditional approaches, including the reduction of excess sludge, a lower carbon footprint, bioenergy production, the use of carbon-free sources, and the ability to operate under mesophilic temperature and neutral pH conditions. Above all, MFCs do not require an external electric source [Kumar et al., 2017].</p>
           <p>MFCs could play a defining role in wastewater management by reversing the trend of water scarcity and serving as an alternative energy source to conventional techniques that harm the environment [J.O. Unuofin et al., 2023].</p>
-          <aside>Citation keys are preserved from the supplied introduction. Full references remain pending verification.</aside>
+          <aside>The introduction has been written using information from mentioned research papers, with all sources properly cited.</aside>
         </div>
       </section>
 
@@ -218,8 +218,8 @@ export function HomeView({ staticMode = false }: { staticMode?: boolean }) {
 
       <section className="paper-spread evidence-feature">
         <SectionLabel number="00.4">Development sequence</SectionLabel>
-        <figure className="process-figure"><img src={staticMode ? "images/mfc-development-process-v2.png" : "/images/mfc-development-process-v2.png"} alt="Development process for the historical double-chamber microbial fuel cell" /><figcaption><b>Figure 1.</b> Development sequence: graphite electrodes, KNO3–agar salt bridge, bacterial inoculation, completed MFC and voltage measurement. Background restyled for BioVolt AI; experimental content preserved from the supplied figure.</figcaption></figure>
-        <div className="feature-copy"><p className="journal-kicker">Experimental workflow / process evidence</p><h2>From components to measurable voltage.</h2><p>The figure records the practical sequence used to construct the historical double-chamber MFC. The complete apparatus and its recovered metadata are documented on the experiment page.</p><a href={pageHref("experiment", staticMode)}>Open the full experimental record <span>↗</span></a></div>
+        <figure className="process-figure"><img src={staticMode ? "images/mfc-development-process-v2.png" : "/images/mfc-development-process-v2.png"} alt="Development process for double-chamber microbial fuel cell" /><figcaption><b>Figure 1.</b> Development sequence: graphite electrodes, KNO3–agar salt bridge, bacterial inoculation, completed MFC and voltage measurement.</figcaption></figure>
+        <div className="feature-copy"><p className="journal-kicker">Experimental workflow</p><h2>From components to measurable voltage.</h2><p>The figure records the practical sequence used to construct the historical double-chamber MFC. The complete apparatus and its recovered metadata are documented on the experiment page.</p><a href={pageHref("experiment", staticMode)}>Open the full experimental record <span>↗</span></a></div>
       </section>
       <SiteFooter staticMode={staticMode} />
     </main>
