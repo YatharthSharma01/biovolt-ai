@@ -268,7 +268,7 @@ export function ResearchView({ staticMode = false }: { staticMode?: boolean }) {
           {[['Biology','Organism / inoculum / mediator'],['Reactor','Architecture / volume / membrane'],['Operation','pH / temperature / HRT / resistance'],['Electrochemistry','Voltage / current / power density'],['Treatment','COD in / COD out / removal'],['Quality','Replicates / uncertainty / validation']].map(([group, fields]) => <div role="row" key={group}><b role="cell">{group}</b><span role="cell">{fields}</span><i role="cell">Required</i></div>)}
         </div>
       </section>
-      <section className="paper-spread editorial-note"><SectionLabel number="01.3">Editorial &amp; access policy</SectionLabel><blockquote>The library publishes analysis, not copies of the papers.</blockquote><p>BioVolt AI links to DOI or publisher records and displays original summaries, citations and selected reported measurements. PDF 11 was reviewed for research purposes but is not hosted because a redistribution licence was not confirmed. PDF 3 was a publisher security page, so that supporting record is limited to verified metadata and abstract-level evidence.</p></section>
+      <section className="paper-spread editorial-note"><SectionLabel number="01.3">Editorial &amp; access policy</SectionLabel><blockquote>The library publishes analysis, not copies of the papers.</blockquote><p>BioVolt AI links to DOI or publisher records and displays original summaries, citations and selected reported measurements. The article “Halophilic Starch-Degrading Bacteria Isolated from Sambhar Lake, India” was reviewed for research purposes but is not hosted because a redistribution licence was not confirmed.</p></section>
       <NextArticle page="experiment" label="02 — College experiment" staticMode={staticMode} />
       <SiteFooter staticMode={staticMode} />
     </main>
@@ -307,7 +307,7 @@ export function ExperimentView({ staticMode = false }: { staticMode?: boolean })
   return (
     <main className="site-shell paper-page">
       <SiteHeader active="experiment" staticMode={staticMode} />
-      <PageMasthead number="02" kicker="Historical laboratory record / college experiment" title="A recovered experiment becomes structured evidence." abstract="This record reconstructs the Sambhar Lake halophile study, double-chamber MFC, growth kinetics and microbiological characterization from the original presentation, photographs and growth workbook. Unknowns remain visible rather than being guessed." />
+      <PageMasthead number="02" kicker="Laboratory record / college experiment" title="A recovered experiment becomes structured evidence." abstract="This record reconstructs the Sambhar Lake halophile study, double-chamber MFC, growth kinetics and microbiological characterization, photographs and growth workbook." />
       <section className="paper-spread experiment-aims">
         <SectionLabel number="02.1">Aim &amp; evidence boundary</SectionLabel>
         <div><p className="journal-kicker">Original study aims</p><h2>From a natural halophile to a working MFC.</h2><p>The college project aimed to isolate halophilic bacteria from a natural habitat, compare growth under salt-containing culture conditions, study growth kinetics and test the isolate as the biological component of a microbial fuel cell.</p></div>
@@ -316,7 +316,7 @@ export function ExperimentView({ staticMode = false }: { staticMode?: boolean })
       </section>
       <section className="paper-spread method-section">
         <SectionLabel number="02.2">Materials &amp; methods</SectionLabel>
-        <div className="method-intro"><p className="journal-kicker">Recovered protocol</p><h2>Four connected experimental stages.</h2><p>Only steps stated or pictured in the supplied work are included. Missing conditions are explicitly marked instead of being reconstructed from literature.</p></div>
+        <div className="method-intro"><p className="journal-kicker">Protocol of experiment</p><h2>Four connected experimental stages.</h2><p>Only steps stated or pictured in the supplied work are included. Missing conditions are explicitly marked instead of being reconstructed from literature.</p></div>
         <div className="method-grid">
           <article><span>01</span><h3>Sample collection</h3><p>Water and salt samples were collected from Sambhar Lake, Rajasthan, as the environmental source of salt-tolerant microorganisms.</p><small>Documented in presentation</small></article>
           <article><span>02</span><h3>Selective cultivation</h3><p>Samples were cultured on Mueller–Hinton agar containing 7.5% NaCl and mannitol motility agar containing 5% NaCl.</p><small>Temperature and incubation time missing</small></article>
