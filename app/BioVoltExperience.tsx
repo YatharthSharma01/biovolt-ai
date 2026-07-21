@@ -312,17 +312,15 @@ export function ExperimentView({ staticMode = false }: { staticMode?: boolean })
         <SectionLabel number="02.1">Aim &amp; evidence boundary</SectionLabel>
         <div><p className="journal-kicker">Original study aims</p><h2>From a natural halophile to a working MFC.</h2><p>The college project aimed to isolate halophilic bacteria from a natural habitat, compare growth under salt-containing culture conditions, study growth kinetics and test the isolate as the biological component of a microbial fuel cell.</p></div>
         <ol><li>Isolate halophilic bacteria from Sambhar Lake samples.</li><li>Obtain distinct pure cultures and characterize them.</li><li>Study the growth phases of the recovered halophile.</li><li>Construct a double-chamber MFC and record electrical output.</li></ol>
-        <aside><b>Scope note</b><p>Reactor volumes, incubation conditions, inoculum preparation and the absence of an external resistor are now defined. Replicate count, exposed electrode area and a voltage time series remain unavailable.</p></aside>
       </section>
       <section className="paper-spread experiment-summary">
         <SectionLabel number="02.2">Experimental conditions</SectionLabel>
         <div className="condition-intro"><p className="journal-kicker">Recorded operating envelope</p><h2>The experiment at a glance.</h2><p>Culture preparation and MFC operation are presented as separate time windows so that the biological incubation period is not confused with the duration of the electrical test.</p></div>
-        <aside className="record-status"><span>Record status</span><strong>Partially complete</strong><p>Operating conditions are available; continuous electrical measurements and replicate-level uncertainty are not.</p></aside>
         <div className="condition-grid">
           <article><span>Anodic chamber</span><strong>280 mL</strong><p>Halophilic broth</p></article>
           <article><span>Cathodic chamber</span><strong>280 mL</strong><p>0.6 mM KMnO₄ solution</p></article>
           <article><span>Temperature</span><strong>37 °C</strong><p>Culture incubation condition</p></article>
-          <article><span>MFC test duration</span><strong>24–48 h</strong><p>Electrical observation window</p></article>
+          <article><span>MFC test duration</span><strong>72 h</strong><p>Voltage every hour for the first 6 h, then every 6 h</p></article>
           <article><span>Halophile incubation</span><strong>48–72 h</strong><p>Before use in the MFC</p></article>
           <article><span>External resistance</span><strong>None</strong><p>No external load resistor was used</p></article>
         </div>
@@ -339,16 +337,17 @@ export function ExperimentView({ staticMode = false }: { staticMode?: boolean })
           <article><span>01</span><h3>Sample collection</h3><p>Water and salt samples were collected from Sambhar Lake, Rajasthan, as the environmental source of salt-tolerant microorganisms.</p><small>Environmental inoculum source</small></article>
           <article><span>02</span><h3>Selective cultivation</h3><p>Samples were cultured on Mueller–Hinton agar containing 7.5% NaCl and mannitol motility agar containing 5% NaCl.</p><small>37 °C / halophile incubation 48–72 h</small></article>
           <article><span>03</span><h3>Isolation &amp; screening</h3><p>Distinct colonies were subcultured to obtain pure isolates, followed by microscopy, colony morphology and biochemical tests.</p><small>Species identity not established</small></article>
-          <article><span>04</span><h3>MFC assembly</h3><p>Graphite rods were placed in 280 mL of halophilic broth at the anode and 280 mL of 0.6 mM KMnO₄ at the cathode, joined by a water–KNO₃–agar salt bridge.</p><small>24–48 h test / no external resistor</small></article>
+          <article><span>04</span><h3>MFC assembly</h3><p>Graphite rods were placed in 280 mL of halophilic broth at the anode and 280 mL of 0.6 mM KMnO₄ at the cathode, joined by a water–KNO₃–agar salt bridge.</p><small>72 h test / scheduled voltage readings / no external resistor</small></article>
         </div>
         <div className="reaction-strip"><p><b>Anode</b>C₆H₁₂O₆ + 6H₂O → 6CO₂ + 24H⁺ + 24e⁻</p><p><b>Cathode</b>MnO₄⁻ + 4H⁺ + 3e⁻ → MnO₂ + 2H₂O</p></div>
+        <div className="circuit-note"><b>Circuit function</b><p>The electrochemical reactions establish the potential difference. The external circuit provides the pathway for electron flow, while the internal circuit—the salt bridge—allows ionic transport, maintains charge balance and sustains the electrochemical gradient between the chambers.</p></div>
       </section>
       <section className="paper-spread apparatus-layout">
         <SectionLabel number="02.4">Reactor apparatus</SectionLabel>
         <figure className="apparatus-figure"><img src={image("historical-mfc-setup.png")} alt="Historical double-chamber MFC apparatus" /><figcaption><b>Figure 2.</b> Historical MFC setup. The photograph is documentary evidence; it is not a calibrated dimensional record.</figcaption></figure>
         <div className="apparatus-spec">
           <p className="journal-kicker">Recorded configuration</p><h2>Double-chamber architecture</h2>
-          <dl><div><dt>Anode</dt><dd>280 mL halophilic broth + graphite rod</dd></div><div><dt>Cathode</dt><dd>280 mL of 0.6 mM KMnO₄ + graphite rod</dd></div><div><dt>Ion pathway</dt><dd>Water + KNO₃ + agar salt bridge</dd></div><div><dt>Temperature</dt><dd>37 °C</dd></div><div><dt>Test window</dt><dd>24–48 hours</dd></div><div><dt>External load</dt><dd>No external resistance used</dd></div><div><dt>Measurement</dt><dd>Individual voltage readings; no time series retained</dd></div></dl>
+          <dl><div><dt>Anode</dt><dd>280 mL halophilic broth + graphite rod</dd></div><div><dt>Cathode</dt><dd>280 mL of 0.6 mM KMnO₄ + graphite rod</dd></div><div><dt>Ion pathway</dt><dd>Water + KNO₃ + agar salt bridge</dd></div><div><dt>Temperature</dt><dd>37 °C</dd></div><div><dt>Test window</dt><dd>72 hours</dd></div><div><dt>External load</dt><dd>No external resistance used</dd></div><div><dt>Measurement</dt><dd>Voltage every 1 hour for the first 6 hours, then every 6 hours through 72 hours; raw time series not retained</dd></div></dl>
         </div>
       </section>
       <section className="paper-spread electrode-layout">
@@ -359,7 +358,7 @@ export function ExperimentView({ staticMode = false }: { staticMode?: boolean })
       <section className="paper-spread results-section">
         <SectionLabel number="02.6">Results &amp; discussion</SectionLabel>
         <div className="results-lead"><p className="journal-kicker">What the electrical record supports</p><h2>Voltage was observed; current was not measured.</h2><p>The maximum recorded electrical reading for the MFC operated with <i>Pseudomonas aeruginosa</i> was <b>1.21 mV</b>. Millivolts measure potential difference, not current. Because no external resistance was used and no independent current measurement or voltage time series is available, current, power and power density cannot be calculated responsibly.</p></div>
-        <div className="result-callouts"><article><strong>1.21</strong><span>mV / maximum Pseudomonas voltage reading</span></article><article><strong>24–48</strong><span>hours / MFC test duration</span></article><article><strong>None</strong><span>external load resistance</span></article></div>
+        <div className="result-callouts"><article><strong>1.21</strong><span>mV / maximum Pseudomonas voltage reading</span></article><article><strong>72</strong><span>hours / MFC test duration</span></article><article><strong>None</strong><span>external load resistance</span></article></div>
         <div className="discussion-note"><b>Interpretation.</b><p>The 1.21 mV value confirms a recorded potential difference under the stated configuration, but it should not be reported as current. A repeat experiment needs voltage over time and a known external resistor—or a direct current measurement—plus a polarization series, exposed electrode area and independent replicates.</p></div>
       </section>
       <section className="paper-spread halophile-growth-section">

@@ -84,7 +84,7 @@ test("experiment page includes the revised operating record", async () => {
     "280 mL",
     "0.6 mM KMnO₄",
     "37 °C",
-    "24–48 h",
+    "72 h",
     "48–72 h",
     "≈0.56% (v/v)",
     "1:179",
@@ -92,5 +92,9 @@ test("experiment page includes the revised operating record", async () => {
     "No external resistance used",
     "1.21 mV",
     "Millivolts measure potential difference, not current",
+    "Voltage every 1 hour for the first 6 hours, then every 6 hours through 72 hours",
+    "The external circuit provides the pathway for electron flow",
   ]) assert.match(bundle, new RegExp(phrase.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")));
+  assert.doesNotMatch(bundle, /Scope note/);
+  assert.doesNotMatch(bundle, /Partially complete/);
 });

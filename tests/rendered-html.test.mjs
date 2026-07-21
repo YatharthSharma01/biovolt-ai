@@ -76,7 +76,11 @@ test("publishes the complete literature register and researcher profile", async 
   assert.match(experimentHtml, /1\.21 mV/);
   assert.match(experimentHtml, /≈0\.56% \(v\/v\)/);
   assert.match(experimentHtml, /No voltage time-series dataset is available/);
+  assert.match(experimentHtml, /72 hours/);
+  assert.match(experimentHtml, /external circuit provides the pathway for electron flow/i);
   assert.doesNotMatch(experimentHtml, /presentation/i);
+  assert.doesNotMatch(experimentHtml, /Scope note/);
+  assert.doesNotMatch(experimentHtml, /Partially complete/);
 
   const home = await render();
   const homeHtml = await home.text();
