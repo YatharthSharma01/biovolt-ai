@@ -1,4 +1,4 @@
-name: Deploy BioVolt AI to GitHub Pages
+name: Deploy BioVolt Labs to GitHub Pages
 
 on:
   push:

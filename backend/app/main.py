@@ -36,7 +36,7 @@ async def lifespan(_: FastAPI):
 
 
 app = FastAPI(
-    title="BioVolt AI Experiment Registry",
+    title="BioVolt Labs Experiment Registry",
     version="0.1.0",
     description="Provenance-aware MFC experiment records and separate literature benchmarks.",
     lifespan=lifespan,

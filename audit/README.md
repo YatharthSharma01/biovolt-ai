@@ -1,4 +1,4 @@
-# BioVolt AI literature audit
+# BioVolt Labs literature audit
 
 This is the evidence-preparation stage for the future MFC estimator. It is not a trained model and it does not assign hidden biological multipliers.
 

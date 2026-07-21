@@ -1,6 +1,6 @@
-# BioVolt AI
+# BioVolt Labs
 
-BioVolt AI is an interactive microbial fuel cell (MFC) research platform. The
+BioVolt Labs is an interactive microbial fuel cell (MFC) research platform. The
 current public release connects Yatharth Sharma's historical college experiment,
 a citation-ready evidence library and a clearly labelled digital-twin
 demonstration.

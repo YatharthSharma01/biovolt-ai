@@ -28,12 +28,12 @@ export async function generateMetadata(): Promise<Metadata> {
   return {
     metadataBase: new URL(origin),
     title: {
-      default: "BioVolt AI",
-      template: "%s | BioVolt AI",
+      default: "BioVolt Labs",
+      template: "%s | BioVolt Labs",
     },
     description:
       "An evidence-led microbial fuel-cell research platform and digital twin.",
-    applicationName: "BioVolt AI",
+    applicationName: "BioVolt Labs",
     authors: [{ name: "Yatharth Sharma" }],
     keywords: [
       "microbial fuel cell",
@@ -44,14 +44,14 @@ export async function generateMetadata(): Promise<Metadata> {
     ],
     openGraph: {
       type: "website",
-      title: "BioVolt AI",
+      title: "BioVolt Labs",
       description: "From microbial metabolism to measurable electricity.",
       url: origin,
-      images: [{ url: socialImage, width: 1733, height: 909, alt: "BioVolt AI double-chamber microbial fuel cell" }],
+      images: [{ url: socialImage, width: 1733, height: 909, alt: "BioVolt Labs double-chamber microbial fuel cell" }],
     },
     twitter: {
       card: "summary_large_image",
-      title: "BioVolt AI",
+      title: "BioVolt Labs",
       description: "From microbial metabolism to measurable electricity.",
       images: [socialImage],
     },

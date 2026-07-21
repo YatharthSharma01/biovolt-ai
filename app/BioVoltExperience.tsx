@@ -50,9 +50,9 @@ export function SiteHeader({ active, staticMode = false, overHero = false }: {
 }) {
   return (
     <header className={`site-header ${overHero ? "site-header--hero" : ""}`}>
-      <a className="brand" href={pageHref("home", staticMode)} aria-label="BioVolt AI home">
+      <a className="brand" href={pageHref("home", staticMode)} aria-label="BioVolt Labs home">
         <span className="brand-mark">BV</span>
-        <span className="brand-copy"><strong>BioVolt AI</strong><small>MFC research intelligence</small></span>
+        <span className="brand-copy"><strong>BioVolt Labs</strong><small>MFC research intelligence</small></span>
       </a>
       <nav className="primary-nav" aria-label="Primary navigation">
         {navItems.map((item) => (
@@ -70,7 +70,7 @@ export function SiteFooter({ staticMode = false }: { staticMode?: boolean }) {
   return (
     <footer className="journal-footer">
       <div className="footer-topline">
-        <a className="footer-brand" href={pageHref("home", staticMode)}><span>BV</span> BioVolt AI</a>
+        <a className="footer-brand" href={pageHref("home", staticMode)}><span>BV</span> BioVolt Labs</a>
         <p>Independent research platform / Edition 01 / 2026</p>
       </div>
       <div className="footer-grid">
@@ -86,7 +86,7 @@ export function SiteFooter({ staticMode = false }: { staticMode?: boolean }) {
         <div>
           <p className="footer-kicker">Research profiles</p>
           <div className="social-row" aria-label="Research profiles">
-            <a href="https://github.com/YatharthSharma01/biovolt-ai" target="_blank" rel="noreferrer" aria-label="BioVolt AI on GitHub">GH</a>
+            <a href="https://github.com/YatharthSharma01/biovolt-ai" target="_blank" rel="noreferrer" aria-label="BioVolt Labs on GitHub">GH</a>
             <a href="https://www.linkedin.com/in/yatharth-sharma-a13395288/" target="_blank" rel="noreferrer" aria-label="Yatharth Sharma on LinkedIn">in</a>
             <span aria-label="X profile link pending" title="Profile link pending">X</span>
           </div>
@@ -141,7 +141,7 @@ export function PageMasthead({ number, kicker, title, abstract }: { number: stri
     <section className="page-masthead">
       <div className="masthead-number">{number}</div>
       <div className="masthead-copy"><p className="journal-kicker">{kicker}</p><h1>{title}</h1><p className="masthead-abstract"><b>Abstract.</b> {abstract}</p></div>
-      <aside><span>BioVolt AI</span><span>Research edition 01</span></aside>
+      <aside><span>BioVolt Labs</span><span>Research edition 01</span></aside>
     </section>
   );
 }
@@ -183,7 +183,7 @@ export function HomeView({ staticMode = false }: { staticMode?: boolean }) {
       <article className="paper-spread home-abstract">
         <SectionLabel number="00.1">Editorial abstract</SectionLabel>
         <div className="lead-copy">
-          <p className="drop-cap">Microbial fuel cells convert microbial metabolism into electrical current while treating organic matter. BioVolt AI is being built to make that complex system observable, comparable and eventually predictable.</p>
+          <p className="drop-cap">Microbial fuel cells convert microbial metabolism into electrical current while treating organic matter. BioVolt Labs is being built to make that complex system observable, comparable and eventually predictable.</p>
           <p>For now, the platform behaves like a carefully annotated research manuscript: every value is labelled by origin, uncertainty is visible, and illustrative model outputs are never presented as experimental truth.</p>
         </div>
         <aside className="margin-note"><b>Research principle</b><p>No prediction without provenance. No recommendation beyond the evidence domain.</p></aside>
@@ -268,7 +268,7 @@ export function ResearchView({ staticMode = false }: { staticMode?: boolean }) {
           {[['Biology','Organism / inoculum / mediator'],['Reactor','Architecture / volume / membrane'],['Operation','pH / temperature / HRT / resistance'],['Electrochemistry','Voltage / current / power density'],['Treatment','COD in / COD out / removal'],['Quality','Replicates / uncertainty / validation']].map(([group, fields]) => <div role="row" key={group}><b role="cell">{group}</b><span role="cell">{fields}</span><i role="cell">Required</i></div>)}
         </div>
       </section>
-      <section className="paper-spread editorial-note"><SectionLabel number="01.3">Editorial &amp; access policy</SectionLabel><blockquote>The library publishes analysis, not copies of the papers.</blockquote><p>BioVolt AI links to DOI or publisher records and displays original summaries, citations and selected reported measurements. The article “Halophilic Starch-Degrading Bacteria Isolated from Sambhar Lake, India” was reviewed for research purposes but is not hosted because a redistribution licence was not confirmed.</p></section>
+      <section className="paper-spread editorial-note"><SectionLabel number="01.3">Editorial &amp; access policy</SectionLabel><blockquote>The library publishes analysis, not copies of the papers.</blockquote><p>BioVolt Labs links to DOI or publisher records and displays original summaries, citations and selected reported measurements. The article “Halophilic Starch-Degrading Bacteria Isolated from Sambhar Lake, India” was reviewed for research purposes but is not hosted because a redistribution licence was not confirmed.</p></section>
       <NextArticle page="experiment" label="02 — College experiment" staticMode={staticMode} />
       <SiteFooter staticMode={staticMode} />
     </main>
@@ -578,8 +578,8 @@ export function AboutView({ staticMode = false }: { staticMode?: boolean }) {
   return (
     <main className="site-shell paper-page">
       <SiteHeader active="about" staticMode={staticMode} />
-      <PageMasthead number="05" kicker="Project method / open research infrastructure" title="Build slowly enough to remain scientifically useful." abstract="BioVolt AI is a flagship project whose credibility will be built on traceable evidence, disciplined data collection, and models that clearly acknowledge uncertainty." />
-      <section className="paper-spread manifesto"><SectionLabel number="05.1">Manifesto</SectionLabel><p>BioVolt AI should feel advanced without pretending that sparse historical evidence is a production-ready digital twin. The platform therefore separates the research archive, experimental record and predictive layer—and keeps their provenance visible.</p><aside><span>01</span><b>Evidence before automation.</b><span>02</span><b>Uncertainty before certainty.</b><span>03</span><b>Reproducibility before scale.</b></aside></section>
+      <PageMasthead number="05" kicker="Project method / open research infrastructure" title="Build slowly enough to remain scientifically useful." abstract="BioVolt Labs is a flagship project whose credibility will be built on traceable evidence, disciplined data collection, and models that clearly acknowledge uncertainty." />
+      <section className="paper-spread manifesto"><SectionLabel number="05.1">Manifesto</SectionLabel><p>BioVolt Labs should feel advanced without pretending that sparse historical evidence is a production-ready digital twin. The platform therefore separates the research archive, experimental record and predictive layer—and keeps their provenance visible.</p><aside><span>01</span><b>Evidence before automation.</b><span>02</span><b>Uncertainty before certainty.</b><span>03</span><b>Reproducibility before scale.</b></aside></section>
       <section className="paper-spread roadmap"><SectionLabel number="05.2">Development roadmap</SectionLabel>{[
         ['Now','Research platform','Multipage evidence library, recovered experiment and synthetic twin interface.'],['Next','Data foundation','Verified papers, normalized experiment schema and manual data entry.'],['Then','Validated models','Grouped cross-validation, intervals, importance and anomaly detection.'],['Later','Live MFC','ESP32 sensing, streaming dashboard, alerts and controlled recommendations.']
       ].map(([phase, title, copy], index) => <article key={phase}><span>{String(index + 1).padStart(2,'0')}</span><p>{phase}</p><h2>{title}</h2><div><i /><p>{copy}</p></div></article>)}</section>

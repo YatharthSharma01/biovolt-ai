@@ -1,4 +1,4 @@
-# BioVolt AI Experiment Registry
+# BioVolt Labs Experiment Registry
 
 This FastAPI service keeps researcher-entered MFC experiments in SQLite and stores literature benchmarks in a separate table. The separation prevents published values from being mistaken for measurements produced by the user's own reactor.
 

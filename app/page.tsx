@@ -2,9 +2,9 @@ import type { Metadata } from "next";
 import { HomeView } from "./BioVoltExperience";
 
 export const metadata: Metadata = {
-  title: "BioVolt AI | From microbial metabolism to measurable electricity",
+  title: "BioVolt Labs | From microbial metabolism to measurable electricity",
   description:
-    "Explore microbial fuel-cell evidence, Yatharth Sharma's historical experiment, and the first BioVolt AI digital-twin preview.",
+    "Explore microbial fuel-cell evidence, Yatharth Sharma's historical experiment, and the first BioVolt Labs digital-twin preview.",
 };
 
 export default function Home() {

@@ -38,7 +38,7 @@ const evidence = workbook.worksheets.getItem("Evidence rows");
 const readme = workbook.worksheets.add("README");
 readme.showGridLines = false;
 readme.getRange("A1:B1").merge();
-readme.getRange("A1").values = [["BioVolt AI literature audit / v0.1"]];
+readme.getRange("A1").values = [["BioVolt Labs literature audit / v0.1"]];
 readme.getRange("A3:B9").values = [
   ["Purpose", "Prepare traceable, condition-level evidence before building the MFC performance estimator."],
   ["Paper register", "14 records: 6 reviews, 6 primary research papers and 2 supporting sources."],

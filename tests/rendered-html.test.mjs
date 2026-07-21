@@ -25,13 +25,14 @@ async function render(path = "/") {
   );
 }
 
-test("server-renders the BioVolt AI cover", async () => {
+test("server-renders the BioVolt Labs cover", async () => {
   const response = await render();
   assert.equal(response.status, 200);
   assert.match(response.headers.get("content-type") ?? "", /^text\/html\b/i);
 
   const html = await response.text();
-  assert.match(html, /<title>BioVolt AI \| From microbial metabolism/i);
+  assert.match(html, /<title>BioVolt Labs \| From microbial metabolism/i);
+  assert.doesNotMatch(html, /BioVolt AI/);
   assert.match(html, /From microbial/);
   assert.match(html, /measurable electricity/);
   assert.match(html, /Research/);
@@ -100,7 +101,7 @@ test("removes the starter preview and ships project metadata", async () => {
   ]);
 
   assert.match(page, /HomeView/);
-  assert.match(layout, /BioVolt AI/);
+  assert.match(layout, /BioVolt Labs/);
   assert.match(layout, /openGraph/);
   assert.match(layout, /\/og\.png/);
   assert.doesNotMatch(packageJson, /react-loading-skeleton/);

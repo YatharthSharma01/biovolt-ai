@@ -3,7 +3,7 @@ import { AboutView } from "../BioVoltExperience";
 
 export const metadata: Metadata = {
   title: "About the project",
-  description: "The evidence policy and development roadmap behind BioVolt AI.",
+  description: "The evidence policy and development roadmap behind BioVolt Labs.",
 };
 
 export default function AboutPage() {

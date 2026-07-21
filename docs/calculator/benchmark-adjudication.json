@@ -2,7 +2,7 @@
   "phase": 2,
   "version": "0.2",
   "reviewDate": "2026-07-19",
-  "title": "BioVolt AI calculator evidence gate",
+  "title": "BioVolt Labs calculator evidence gate",
   "decisionVocabulary": {
     "reference_ready": "May be used as a cited, single-study literature reference for the named target only.",
     "treatment_reference": "May be used as a cited COD-treatment reference when circuit mode and duration are matched.",

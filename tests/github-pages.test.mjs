@@ -17,7 +17,7 @@ test("GitHub Pages build contains six linked page entries", async () => {
     assert.match(html, /<div id="root"><\/div>/, file);
     assert.match(html, /\.\/assets\/[^\"]+\.js/, file);
     assert.match(html, new RegExp(`data-page="${page}"`), file);
-    assert.match(html, /BioVolt AI/, file);
+    assert.match(html, /BioVolt Labs/, file);
   }
 });
 
@@ -31,6 +31,8 @@ test("static navigation points to every research article", async () => {
   }
   assert.doesNotMatch(bundle, /registry\.html/);
   assert.doesNotMatch(bundle, /Literature-audit stage/);
+  assert.match(bundle, /BioVolt Labs/);
+  assert.doesNotMatch(bundle, /BioVolt AI/);
 });
 
 test("historical MFC images are included in the static artifact", async () => {

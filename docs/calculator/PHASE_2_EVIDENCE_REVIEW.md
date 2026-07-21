@@ -1,4 +1,4 @@
-# BioVolt AI MFC Calculator - Phase 2 Evidence Review
+# BioVolt Labs MFC Calculator - Phase 2 Evidence Review
 
 Status: complete for the current literature set  
 Review date: 2026-07-19  
@@ -42,7 +42,7 @@ It cannot yet support:
 
 The 100-ohm glucose, fructose and sucrose rows remain valid as reported, cited results. Their COD-removal values may be used as single-study references. Their power values are held out of similarity matching because the normalization basis is not explicit.
 
-For glucose, `V = 0.202 V` and `R = 100 ohm` imply `P = 0.408 mW`. The reported `136 mW/m2` and `673 mA/m2` imply an area of approximately `30 cm2`, which is consistent with counting both faces of a `3 x 5 cm` electrode. This is a useful reconciliation clue, but BioVolt AI will not convert it into a verified area unless the source explicitly confirms the convention.
+For glucose, `V = 0.202 V` and `R = 100 ohm` imply `P = 0.408 mW`. The reported `136 mW/m2` and `673 mA/m2` imply an area of approximately `30 cm2`, which is consistent with counting both faces of a `3 x 5 cm` electrode. This is a useful reconciliation clue, but BioVolt Labs will not convert it into a verified area unless the source explicitly confirms the convention.
 
 The sucrose current-density value remains excluded because it conflicts strongly with the voltage, resistance and plausible electrode area. The glucose polarization maximum stays separate from the steady 100-ohm condition.
 
@@ -104,7 +104,7 @@ The next extraction pass should prioritize primary studies that report all of th
 - replicate count and uncertainty;
 - polarization data with resistance-specific points.
 
-For each target domain, BioVolt AI should seek at least three independent papers and five eligible conditions before presenting a supported range. A trained model should wait for a substantially larger, diverse and externally validated dataset.
+For each target domain, BioVolt Labs should seek at least three independent papers and five eligible conditions before presenting a supported range. A trained model should wait for a substantially larger, diverse and externally validated dataset.
 
 ## Phase 3 handoff
 

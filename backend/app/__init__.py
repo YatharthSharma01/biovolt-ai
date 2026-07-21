@@ -1,2 +1,2 @@
-"""BioVolt AI experiment-registry API."""
+"""BioVolt Labs experiment-registry API."""
 

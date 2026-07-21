@@ -1,6 +1,6 @@
 {
   "schemaVersion": "0.1",
-  "product": "BioVolt AI MFC Calculator",
+  "product": "BioVolt Labs MFC Calculator",
   "scope": "single_cell",
   "modes": ["measured", "literature"],
   "groups": [

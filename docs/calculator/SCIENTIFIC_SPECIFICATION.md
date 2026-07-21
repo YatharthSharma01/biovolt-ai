@@ -1,4 +1,4 @@
-# BioVolt AI MFC Calculator — Scientific Specification
+# BioVolt Labs MFC Calculator — Scientific Specification
 
 Status: Phase 1 specification, version 0.1  
 Scope: public calculator beta for a single microbial fuel cell  
@@ -62,7 +62,7 @@ The calculator must feel like a premium scientific instrument rather than a long
 
 ### 3.2 Visual design
 
-- Continue BioVolt AI's research-journal language: warm paper background, dark ink, electric blue and restrained rules.
+- Continue BioVolt Labs’ research-journal language: warm paper background, dark ink, electric blue and restrained rules.
 - Use large editorial headings, compact monospaced labels and highly legible numeric results.
 - Use one dominant result per card, with the unit attached to the number.
 - Distinguish Calculated, Literature reference and Literature estimate using both text and visual markers.
