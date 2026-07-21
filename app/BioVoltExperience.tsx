@@ -321,7 +321,7 @@ export function ExperimentView({ staticMode = false }: { staticMode?: boolean })
           <article><span>Cathodic chamber</span><strong>280 mL</strong><p>0.6 mM KMnO₄ solution</p></article>
           <article><span>Temperature</span><strong>37 °C</strong><p>Culture incubation condition</p></article>
           <article><span>MFC test duration</span><strong>72 h</strong><p>Voltage every hour for the first 6 h, then every 6 h</p></article>
-          <article><span>Halophile incubation</span><strong>48–72 h</strong><p>Before use in the MFC</p></article>
+          <article><span>Halophile incubation in broth</span><strong>48–72 h</strong><p>Before use in the MFC</p></article>
           <article><span>External resistance</span><strong>None</strong><p>No external load resistor was used</p></article>
         </div>
         <div className="inoculum-record">
@@ -335,7 +335,7 @@ export function ExperimentView({ staticMode = false }: { staticMode?: boolean })
         <div className="method-intro"><p className="journal-kicker">Protocol of experiment</p><h2>Four connected experimental stages.</h2><p>The workflow separates environmental sampling, selective cultivation, characterization and MFC operation while retaining the conditions available for each stage.</p></div>
         <div className="method-grid">
           <article><span>01</span><h3>Sample collection</h3><p>Water and salt samples were collected from Sambhar Lake, Rajasthan, as the environmental source of salt-tolerant microorganisms.</p><small>Environmental inoculum source</small></article>
-          <article><span>02</span><h3>Selective cultivation</h3><p>Samples were cultured on Mueller–Hinton agar containing 7.5% NaCl and mannitol motility agar containing 5% NaCl.</p><small>37 °C / halophile incubation 48–72 h</small></article>
+          <article><span>02</span><h3>Selective cultivation</h3><p>Samples were cultured on Mueller–Hinton agar containing 7.5% NaCl and mannitol motility agar containing 5% NaCl.</p><small>37 °C / halophile incubation 24-48 h</small></article>
           <article><span>03</span><h3>Isolation &amp; screening</h3><p>Distinct colonies were subcultured to obtain pure isolates, followed by microscopy, colony morphology and biochemical tests.</p><small>Species identity not established</small></article>
           <article><span>04</span><h3>MFC assembly</h3><p>Graphite rods were placed in 280 mL of halophilic broth at the anode and 280 mL of 0.6 mM KMnO₄ at the cathode, joined by a water–KNO₃–agar salt bridge.</p><small>72 h test / scheduled voltage readings / no external resistor</small></article>
         </div>
@@ -344,7 +344,7 @@ export function ExperimentView({ staticMode = false }: { staticMode?: boolean })
       </section>
       <section className="paper-spread apparatus-layout">
         <SectionLabel number="02.4">Reactor apparatus</SectionLabel>
-        <figure className="apparatus-figure"><img src={image("historical-mfc-setup.png")} alt="Historical double-chamber MFC apparatus" /><figcaption><b>Figure 2.</b> Historical MFC setup. The photograph is documentary evidence; it is not a calibrated dimensional record.</figcaption></figure>
+        <figure className="apparatus-figure"><img src={image("historical-mfc-setup.png")} alt="Historical double-chamber MFC apparatus" /><figcaption><b>Figure 2.</b> The experimental setup for a double chamber Microbial Fuel Cell.</figcaption></figure>
         <div className="apparatus-spec">
           <p className="journal-kicker">Recorded configuration</p><h2>Double-chamber architecture</h2>
           <dl><div><dt>Anode</dt><dd>280 mL halophilic broth + graphite rod</dd></div><div><dt>Cathode</dt><dd>280 mL of 0.6 mM KMnO₄ + graphite rod</dd></div><div><dt>Ion pathway</dt><dd>Water + KNO₃ + agar salt bridge</dd></div><div><dt>Temperature</dt><dd>37 °C</dd></div><div><dt>Test window</dt><dd>72 hours</dd></div><div><dt>External load</dt><dd>No external resistance used</dd></div><div><dt>Measurement</dt><dd>Voltage every 1 hour for the first 6 hours, then every 6 hours through 72 hours; raw time series not retained</dd></div></dl>
@@ -352,8 +352,9 @@ export function ExperimentView({ staticMode = false }: { staticMode?: boolean })
       </section>
       <section className="paper-spread electrode-layout">
         <SectionLabel number="02.5">Electrode record</SectionLabel>
-        <div className="electrode-copy"><p className="journal-kicker">Material note / unresolved dimension</p><h2>Graphite rod electrodes</h2><p>The product evidence identifies an Achalnath Tools graphite rod and lists 6 × 1 × 1 centimetres. The description also says “6-inch long,” creating a conflict that prevents reliable exposed-area calculation.</p><div className="warning-note"><b>Action required</b><span>Measure the surviving electrode or recover the original purchase specification before normalizing power density.</span></div></div>
-        <figure><img src={image("graphite-electrodes.png")} alt="Pair of pointed graphite rod electrodes" /><figcaption><b>Figure 3.</b> Graphite electrode reference associated with the experimental setup.</figcaption></figure>
+        <div className="electrode-copy"><p className="journal-kicker">Material note</p><h2>Graphite rod electrodes</h2><p>In MFCs, the anode material plays a major factor in deciding the system's power density [Tikam Chand Dakal et al,.2025]. The cathode material directly dominates the kinetics of oxygen reduction reaction (ORR) in the cathode chamber [Nabil. K. Abd-Elrahman et al,.2022].</p>
+          <p>Graphite is a crystalline form of carbon whose biocompatibility, strength, and large surface area make it an effective MFC anode material, supporting good energy generation and pollutant removal [Nabil. K. Abd-Elrahman et al,.2022].</p><div className="note"><b>Action required</b><span>Using graphite rods can increase the electrode’s surface area, promoting efficient microbial adhesion and biofilm formation.</span></div></div>
+        <figure><img src={image("graphite-electrodes.png")} alt="Pair of pointed graphite rod electrodes" /><figcaption><b>Figure 3.</b> Graphite electrodes used in the experiment.</figcaption></figure>
       </section>
       <section className="paper-spread results-section">
         <SectionLabel number="02.6">Results &amp; discussion</SectionLabel>
@@ -363,7 +364,7 @@ export function ExperimentView({ staticMode = false }: { staticMode?: boolean })
       </section>
       <section className="paper-spread halophile-growth-section">
         <SectionLabel number="02.7">Growth kinetics of the halophile</SectionLabel>
-        <div className="halophile-growth-copy"><p className="journal-kicker">OD₆₀₀ / time in hours</p><h2>A complete four-phase growth profile.</h2><p>The archived graph shows a short lag phase, sustained exponential growth, a peak OD₆₀₀ of approximately <b>1.40</b> around <b>50–52 h</b>, followed by decline to approximately <b>1.14</b> by the final recorded point near <b>77 h</b>.</p><div className="phase-list"><span><i>01</i>Lag / ≈0–8 h</span><span><i>02</i>Exponential / ≈8–50 h</span><span><i>03</i>Peak / ≈50–52 h</span><span><i>04</i>Decline / after ≈52 h</span></div><small>Values and phase boundaries are approximate readings from the archived graph because its raw table and replicate data are unavailable. The documented halophile incubation window was 48–72 h at 37 °C.</small></div>
+        <div className="halophile-growth-copy"><p className="journal-kicker">OD₆₀₀ / time in hours</p><h2>A complete four-phase growth profile.</h2><p>The archived graph shows a short lag phase, sustained exponential growth, a peak OD₆₀₀ of approximately <b>1.40</b> around <b>50–52 h</b>, followed by decline to approximately <b>1.14</b> by the final recorded point near <b>77 h</b>.</p><div className="phase-list"><span><i>01</i>Lag / ≈0–8 h</span><span><i>02</i>Exponential / ≈8–50 h</span><span><i>03</i>Peak / ≈50–52 h</span><span><i>04</i>Decline / after ≈52 h</span></div><small>Values and phase boundaries are readings from the graph. The documented halophile incubation window was 48–72 h at 37 °C.</small></div>
         <figure><img src={image("halophile-growth-curve.png")} alt="Archived halophile growth curve showing lag, exponential, stationary and decline phases" /><figcaption><b>Figure 4.</b> Archived halophile growth-kinetics graph. Image-derived values are kept distinct from measured spreadsheet data.</figcaption></figure>
       </section>
       <section className="paper-spread morphology-section">
@@ -374,7 +375,7 @@ export function ExperimentView({ staticMode = false }: { staticMode?: boolean })
       </section>
       <section className="paper-spread biochemical-section">
         <SectionLabel number="02.9">Biochemical characterization</SectionLabel>
-        <div className="character-heading"><p className="journal-kicker">Qualitative test panel</p><h2>The water isolate differed in catalase; the salt isolate differed in TSI.</h2><p>All remaining recorded reactions were negative for both isolates. “Indole red” retains the terminology used in the experimental record.</p></div>
+        <div className="character-heading"><p className="journal-kicker">Qualitative test panel</p><h2>The water isolate differed in catalase; the salt isolate differed in TSI.</h2><p>All remaining recorded reactions were negative for both isolates.</p></div>
         <div className="result-table biochemical-table" role="table" aria-label="Biochemical test results"><div role="row"><b role="columnheader">Test</b><b role="columnheader">Water isolate</b><b role="columnheader">Salt isolate</b></div>{[["Catalase","Positive","Negative"],["Amylase / starch","Negative","Negative"],["Motility","Negative","Negative"],["Methyl red","Negative","Negative"],["Voges–Proskauer","Negative","Negative"],["Indole red","Negative","Negative"],["Citrate utilization","Negative","Negative"],["Triple sugar iron (TSI)","Negative","Positive"]].map((row) => <div role="row" key={row[0]}>{row.map((cell) => <span role="cell" className={cell === "Positive" ? "positive-result" : ""} key={cell}>{cell}</span>)}</div>)}</div>
         <div className="assay-gallery">
           {[["catalase-water.jpeg","Catalase / water isolate"],["catalase-salt.jpeg","Catalase / salt isolate"],["motility-test.jpeg","Motility test"],["methyl-red-test.jpeg","Methyl red test"],["voges-proskauer-test.jpeg","Voges–Proskauer test"],["indole-red-test.jpeg","Indole red test"],["citrate-test.jpeg","Citrate test"],["tsi-test.jpeg","TSI test"],["starch-water.jpeg","Starch / water isolate"],["starch-salt.jpeg","Starch / salt isolate"]].map(([file, label]) => <figure key={file}><img src={image(file)} alt={`${label} observation from the college experiment`} /><figcaption>{label}</figcaption></figure>)}
