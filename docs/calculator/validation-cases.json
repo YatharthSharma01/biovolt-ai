@@ -58,7 +58,37 @@
       }
     },
     {
-      "id": "CALC-DOMAIN-003",
+      "id": "CALC-EVIDENCE-003",
+      "title": "Eligible halophile condition retrieves a cited single-study reference",
+      "mode": "literature",
+      "sourceConditionId": "BV-LIT-011-40",
+      "inputs": {
+        "cell_scope": "single_cell",
+        "reactor_architecture": "double_chamber",
+        "operation_mode": "batch",
+        "organism": "halophilic enrichment",
+        "culture_type": "environmental",
+        "substrate": "sodium acetate",
+        "substrate_concentration_g_l": 3.5,
+        "anode_material": "stainless-steel mesh",
+        "cathode_material": "carbon felt",
+        "temperature_c": 37,
+        "ph": 7,
+        "salinity_g_l": 40,
+        "load_mode": "resistor",
+        "external_resistance_ohm": 100
+      },
+      "expected": {
+        "result_class": "literature_reference",
+        "condition_id": "BV-LIT-011-40",
+        "power_density_mw_m2": 162.09,
+        "evidence_tier": "low",
+        "warning_codes": ["LOAD_POINTS_DIFFER", "SINGLE_STUDY_REFERENCE"],
+        "literature_behavior": "Return the DOI and projected-cathode normalization basis; do not label the result a prediction or confidence interval."
+      }
+    },
+    {
+      "id": "CALC-DOMAIN-004",
       "title": "Unsupported configuration refuses a numerical estimate",
       "mode": "literature",
       "inputs": {

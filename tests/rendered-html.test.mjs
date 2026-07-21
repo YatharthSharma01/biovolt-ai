@@ -70,6 +70,8 @@ test("publishes the complete literature register and researcher profile", async 
   assert.doesNotMatch(researchHtml, /Download evidence matrix/);
   assert.match(researchHtml, /6.*Primary research/s);
   assert.match(researchHtml, /6.*Review papers/s);
+  assert.match(researchHtml, /Standard citation/);
+  assert.match(researchHtml, /Ankisha Vijay, Shivam Arora, Sandeep Gupta &amp; Meenu Chhabra/);
 
   const experiment = await render("/experiment");
   const experimentHtml = await experiment.text();
@@ -81,6 +83,10 @@ test("publishes the complete literature register and researcher profile", async 
   assert.match(experimentHtml, /No voltage time-series dataset is available/);
   assert.match(experimentHtml, /72 hours/);
   assert.match(experimentHtml, /external circuit provides the pathway for electron flow/i);
+  assert.match(experimentHtml, /Protocol timeline/);
+  assert.match(experimentHtml, /18 scheduled time points/);
+  assert.match(experimentHtml, /biovolt-labs-72-hour-mfc-template\.xlsx/);
+  assert.match(experimentHtml, /should not be described as oxygen reduction/);
   assert.doesNotMatch(experimentHtml, /presentation/i);
   assert.doesNotMatch(experimentHtml, /Scope note/);
   assert.doesNotMatch(experimentHtml, /Partially complete/);

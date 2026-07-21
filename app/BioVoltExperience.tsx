@@ -244,6 +244,7 @@ export function ResearchView({ staticMode = false }: { staticMode?: boolean }) {
             <article className="citation-card" key={paper.record}>
               <div className="citation-meta"><span>{paper.record}</span><span>{paper.kind}</span><span>{paper.year}</span></div>
               <div className="citation-heading"><p className="authors">{paper.authors}</p><h2>{paper.title}</h2><p className="journal-line">{paper.journal}</p></div>
+              <p className="citation-line"><b>Standard citation</b>{paper.citation}</p>
               <p className="paper-summary">{paper.summary}</p>
               <div className="paper-metrics" aria-label={`Key reported measurements for ${paper.title}`}>
                 {paper.metrics.map((metric) => <p key={metric.label}><span>{metric.label}</span><strong>{metric.value}</strong></p>)}
@@ -329,6 +330,10 @@ export function ExperimentView({ staticMode = false }: { staticMode?: boolean })
           <dl><div><dt>Inoculum size</dt><dd>≈0.56% (v/v)</dd></div><div><dt>Inoculum : medium</dt><dd>1:179</dd></div><div><dt>Calculation</dt><dd>1 ÷ 180 × 100</dd></div></dl>
         </div>
         <div className="data-boundary"><b>Electrical data boundary</b><p>No voltage time-series dataset is available. The retained values are single observed readings, so stability, peak timing, rate of decline and energy production cannot be reconstructed.</p></div>
+        <div className="data-template-callout">
+          <div><p className="journal-kicker">Data-ready repeat experiment</p><h3>Use the 72-hour measurement workbook.</h3><p>The template separates raw observations from formula-derived current, power and power density, includes the complete recording schedule, and leaves unknown values blank.</p></div>
+          <a href={staticMode ? "downloads/biovolt-labs-72-hour-mfc-template.xlsx" : "/downloads/biovolt-labs-72-hour-mfc-template.xlsx"} download>Download .xlsx <span>↓</span></a>
+        </div>
       </section>
       <section className="paper-spread method-section">
         <SectionLabel number="02.3">Materials &amp; methods</SectionLabel>
@@ -339,7 +344,18 @@ export function ExperimentView({ staticMode = false }: { staticMode?: boolean })
           <article><span>03</span><h3>Isolation &amp; screening</h3><p>Distinct colonies were subcultured to obtain pure isolates, followed by microscopy, colony morphology and biochemical tests.</p><small>Species identity not established</small></article>
           <article><span>04</span><h3>MFC assembly</h3><p>Graphite rods were placed in 280 mL of halophilic broth at the anode and 280 mL of 0.6 mM KMnO₄ at the cathode, joined by a water–KNO₃–agar salt bridge.</p><small>72 h test / scheduled voltage readings / no external resistor</small></article>
         </div>
-        <div className="reaction-strip"><p><b>Anode</b>C₆H₁₂O₆ + 6H₂O → 6CO₂ + 24H⁺ + 24e⁻</p><p><b>Cathode</b>MnO₄⁻ + 4H⁺ + 3e⁻ → MnO₂ + 2H₂O</p></div>
+        <div className="protocol-timeline" aria-label="Experimental protocol timeline">
+          <div className="protocol-timeline-heading"><p className="journal-kicker">Repeatable sequence</p><h3>Protocol timeline</h3><p>Each time window is attached to the stage it describes so cultivation, broth incubation and electrical monitoring are not confused.</p></div>
+          <ol>
+            <li><span>01</span><div><b>Collect</b><p>Water and salt samples from Sambhar Lake.</p></div><small>Environmental source</small></li>
+            <li><span>02</span><div><b>Select</b><p>Inoculate salt-containing solid media.</p></div><small>37 °C / 24–48 h</small></li>
+            <li><span>03</span><div><b>Prepare inoculum</b><p>Add 1 mL broth culture to 179 mL medium.</p></div><small>≈0.56% v/v / 1:179</small></li>
+            <li><span>04</span><div><b>Incubate broth</b><p>Develop the halophilic culture before reactor use.</p></div><small>37 °C / 48–72 h</small></li>
+            <li><span>05</span><div><b>Assemble reactor</b><p>Prepare the 280 mL anode, 280 mL cathode and KNO₃–agar bridge.</p></div><small>0.6 mM KMnO₄ catholyte</small></li>
+            <li><span>06</span><div><b>Monitor MFC</b><p>Record at 0–6 h hourly, then every 6 h through 72 h.</p></div><small>18 scheduled time points</small></li>
+          </ol>
+        </div>
+        <div className="reaction-strip"><p><b>Anode / generic carbohydrate</b>CH₂O + H₂O → CO₂ + 4H⁺ + 4e⁻</p><p><b>Cathode / acidic permanganate</b>MnO₄⁻ + 4H⁺ + 3e⁻ → MnO₂ + 2H₂O</p><small>Illustrative half-reactions only. The retained record does not establish the broth composition or catholyte pH required for a complete reaction balance.</small></div>
         <div className="circuit-note"><b>Circuit function</b><p>The electrochemical reactions establish the potential difference. The external circuit provides the pathway for electron flow, while the internal circuit—the salt bridge—allows ionic transport, maintains charge balance and sustains the electrochemical gradient between the chambers.</p></div>
       </section>
       <section className="paper-spread apparatus-layout">
@@ -352,8 +368,8 @@ export function ExperimentView({ staticMode = false }: { staticMode?: boolean })
       </section>
       <section className="paper-spread electrode-layout">
         <SectionLabel number="02.5">Electrode record</SectionLabel>
-        <div className="electrode-copy"><p className="journal-kicker">Material note</p><h2>Graphite rod electrodes</h2><p>In MFCs, the anode material plays a major factor in deciding the system's power density [Tikam Chand Dakal et al,.2025]. The cathode material directly dominates the kinetics of oxygen reduction reaction (ORR) in the cathode chamber [Nabil. K. Abd-Elrahman et al,.2022].</p>
-          <p>Graphite is a crystalline form of carbon whose biocompatibility, strength, and large surface area make it an effective MFC anode material, supporting good energy generation and pollutant removal [Nabil. K. Abd-Elrahman et al,.2022].</p><div className="note"><b>Note :</b><span>Using graphite rods can increase the electrode’s surface area, promoting efficient microbial adhesion and biofilm formation.</span></div></div>
+        <div className="electrode-copy"><p className="journal-kicker">Material note</p><h2>Graphite rod electrodes</h2><p>Electrode material, geometry, accessible surface, conductivity and surface chemistry can all influence biofilm attachment, charge transfer and cell resistance. The material name alone is therefore not enough to predict power density <a className="inline-citation" href="https://doi.org/10.3390/molecules27217483" target="_blank" rel="noreferrer">(Abd-Elrahman et al., 2022)</a>.</p>
+          <p>This reactor used permanganate in the catholyte, so its cathodic process should not be described as oxygen reduction. Graphite is conductive, chemically stable and practical, but a smooth rod generally provides less accessible area than graphite felt, brushes, granules or deliberately roughened structures.</p><div className="note"><b>Note :</b><span>The product record lists a 6 × 1 × 1 cm graphite rod, but the immersed length and exact cylindrical diameter were not retained. Exposed area cannot be reconstructed responsibly and should be measured in the repeat experiment.</span></div></div>
         <figure><img src={image("graphite-electrodes.png")} alt="Pair of pointed graphite rod electrodes" /><figcaption><b>Figure 3.</b> Graphite electrodes used in the experiment.</figcaption></figure>
       </section>
       <section className="paper-spread results-section">

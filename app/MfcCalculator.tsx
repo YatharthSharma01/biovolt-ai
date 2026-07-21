@@ -19,6 +19,7 @@ import {
 } from "./calculatorEngine";
 import { findEvidenceReference, type EvidenceReference } from "./calculatorEvidence";
 import { interpretSubstrateConcentration, type ConcentrationEvidence } from "./calculatorResearch";
+import { calculatorValidationCases } from "./calculatorValidation";
 
 type CalculatorMode = "measured" | "projected" | "literature";
 type InternalResistanceMethod = "direct" | "components";
@@ -220,6 +221,64 @@ const displayNumber = (value: number | null, decimals = 2) => {
   return new Intl.NumberFormat("en-IN", { maximumFractionDigits: decimals }).format(value);
 };
 
+function EquationTrace({ state, result }: { state: FormState; result: ReturnType<typeof calculateMfc> }) {
+  const inputs = canonicalInputs(state);
+  let equation = "No equation applied";
+  let usedInputs = "Awaiting a complete, compatible input set.";
+  let applicability = "No result is produced until the selected evidence path is valid.";
+  let assumptions = ["Unknown values remain null; they are never converted to zero."];
+
+  if (state.mode === "literature") {
+    equation = "Weighted similarity → closest eligible audited condition";
+    usedInputs = "Reactor, biology, substrate, electrodes, load and operating conditions entered for comparison.";
+    applicability = "Contextual comparison only; one paper produces a reference, not a prediction or confidence interval.";
+    assumptions = ["Only gate-approved primary-study conditions can return a value.", "Missing fields reduce completeness; unlike normalization bases are not pooled."];
+  } else if (state.mode === "projected") {
+    equation = "I = OCV/(Rext + Rint); Vload = I·Rext; P = I²·Rext";
+    usedInputs = `OCV ${displayNumber(inputs.openCircuitVoltageV, 3)} V; Rext ${displayNumber(inputs.externalResistanceOhm, 1)} Ω; Rint ${displayNumber(inputs.internalResistanceOhm ?? null, 1)} Ω.`;
+    applicability = "A local, linear circuit projection near one operating state; verify with a polarization sweep.";
+    assumptions = ["OCV and total internal resistance are treated as constant over the scenario.", "Biological dynamics, activation losses and mass-transfer nonlinearity are not predicted."];
+  } else if (result.method?.includes("voltage and resistance")) {
+    equation = "I = Vload/Rext; P = Vload²/Rext";
+    usedInputs = `Loaded voltage ${displayNumber(inputs.loadedVoltageV, 3)} V; external resistance ${displayNumber(inputs.externalResistanceOhm, 1)} Ω.`;
+    applicability = "Resistor-loaded measurements taken at the same operating point.";
+    assumptions = ["The entered voltage is loaded voltage, not OCV.", "The external resistor value is known and stable during measurement."];
+  } else if (result.method?.includes("voltage and measured current")) {
+    equation = "P = Vload·I";
+    usedInputs = `Loaded voltage ${displayNumber(inputs.loadedVoltageV, 3)} V; measured current ${displayNumber(inputs.measuredCurrentMa, 3)} mA.`;
+    applicability = "Compatible voltage and current observations from the same operating point.";
+    assumptions = ["Voltage and current were measured simultaneously or under an unchanged load."];
+  } else if (result.method?.includes("current and resistance")) {
+    equation = "Vload = I·Rext; P = I²·Rext";
+    usedInputs = `Measured current ${displayNumber(inputs.measuredCurrentMa, 3)} mA; external resistance ${displayNumber(inputs.externalResistanceOhm, 1)} Ω.`;
+    applicability = "Current measured through a known external resistor at one operating point.";
+    assumptions = ["The current and resistor belong to the same stabilized condition."];
+  } else if (state.loadMode === "open_circuit") {
+    equation = "OCV displayed only";
+    usedInputs = `Open-circuit voltage ${displayNumber(inputs.openCircuitVoltageV, 3)} V.`;
+    applicability = "No loaded current or harvestable power is calculated from OCV alone.";
+  } else if (state.loadMode === "short_circuit") {
+    equation = "No harvestable-load power equation";
+    usedInputs = "Short-circuit operating state.";
+    applicability = "Treatment context only; external-load power is zero at zero load voltage.";
+  }
+
+  if (result.powerDensityMwM2 !== null) assumptions.push(`Density uses the selected ${state.areaBasis.replace(/_/g, " ")} basis.`);
+  if (result.codRemovalPercent !== null) assumptions.push("COD removal uses paired initial and final measurements from the same experiment.");
+
+  return (
+    <details className="scientific-trace" open={Boolean(result.method) || state.mode === "literature"}>
+      <summary><span>Scientific trace</span><b>Equation · inputs · assumptions · applicability</b></summary>
+      <dl>
+        <div><dt>Equation / method</dt><dd><code>{equation}</code></dd></div>
+        <div><dt>Inputs used</dt><dd>{usedInputs}</dd></div>
+        <div><dt>Applies when</dt><dd>{applicability}</dd></div>
+      </dl>
+      <div className="trace-assumptions"><b>Assumptions and exclusions</b><ul>{assumptions.map((assumption) => <li key={assumption}>{assumption}</li>)}</ul></div>
+    </details>
+  );
+}
+
 function EvidenceCard({ reference }: { reference: EvidenceReference }) {
   if (reference.tier === "outside_domain") {
     return (
@@ -309,6 +368,7 @@ function ResultPanel({ state, result, powerReference, codReference, concentratio
           {result.warnings.map((warning) => <p key={warning.code} data-severity={warning.severity}><b>{warning.severity}</b>{warning.message}</p>)}
         </div>
       )}
+      <EquationTrace state={state} result={result} />
       {state.mode === "literature" && (
         <div className="evidence-stack">
           <EvidenceCard reference={powerReference} />
@@ -588,8 +648,23 @@ export function CalculatorView({ staticMode = false }: { staticMode?: boolean })
         </div>
       </section>
 
+      <section className="paper-spread calculator-validation-suite">
+        <SectionLabel number="03.2">Scientific validation controls</SectionLabel>
+        <div className="validation-suite-heading"><p className="journal-kicker">Equation / reconciliation / retrieval / refusal</p><h2>Four tests protect four different failure points.</h2><p>A numerical match is only one form of validation. The suite also checks that inconsistent literature is not silently normalized, the correct cited condition is retrieved and unsupported configurations are refused.</p></div>
+        <div className="validation-case-grid">
+          {calculatorValidationCases.map((item) => (
+            <article key={item.id}>
+              <div><span>{item.id}</span><b>{item.status}</b></div>
+              <p className="validation-category">{item.category}</p>
+              <dl><div><dt>Inputs</dt><dd>{item.inputs}</dd></div><div><dt>Expected behavior</dt><dd>{item.expected}</dd></div><div><dt>Observed</dt><dd>{item.observed}</dd></div></dl>
+              {item.sourceUrl ? <a href={item.sourceUrl} target="_blank" rel="noreferrer">{item.sourceLabel} ↗</a> : <small>{item.sourceLabel}</small>}
+            </article>
+          ))}
+        </div>
+      </section>
+
       <section className="paper-spread calculator-evidence-policy">
-        <SectionLabel number="03.2">Phase 2 evidence boundary</SectionLabel>
+        <SectionLabel number="03.3">Phase 2 evidence boundary</SectionLabel>
         <div><p className="journal-kicker">Current evidence gate</p><h2>References inform the model; they do not impersonate measurements.</h2><p>Sixteen literature conditions support controlled comparisons. The resistance projection is a physical circuit estimate, while substrate-concentration findings remain configuration-specific evidence rather than a universal power multiplier.</p></div>
         <aside><span><b>2</b>Power match-ready conditions</span><span><b>8</b>COD match-ready conditions</span><span><b>0</b>Estimate-ready domains</span></aside>
       </section>

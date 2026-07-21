@@ -49,6 +49,7 @@ test("historical MFC images are included in the static artifact", async () => {
     access("github-dist/images/catalase-water.jpeg"),
     access("github-dist/images/tsi-test.jpeg"),
     access("github-dist/og.png"),
+    access("github-dist/downloads/biovolt-labs-72-hour-mfc-template.xlsx"),
   ]);
 });
 
@@ -75,6 +76,10 @@ test("calculator bundle includes measured equations and evidence refusal languag
     "Outside evidence domain",
     "No numerical estimate produced",
     "OPEN_CIRCUIT_NO_LOAD",
+    "Scientific trace",
+    "Four tests protect four different failure points",
+    "Reconciliation guardrail",
+    "Domain refusal",
   ]) assert.match(bundle, new RegExp(phrase));
 });
 
@@ -98,9 +103,24 @@ test("experiment page includes the revised operating record", async () => {
     "Millivolts measure potential difference, not current",
     "Voltage every 1 hour for the first 6 hours, then every 6 hours through 72 hours",
     "The external circuit provides the pathway for electron flow",
+    "Protocol timeline",
+    "18 scheduled time points",
+    "Download .xlsx",
+    "should not be described as oxygen reduction",
+    "Exposed area cannot be reconstructed responsibly",
   ]) assert.match(bundle, new RegExp(phrase.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")));
   assert.doesNotMatch(bundle, /Scope note/);
   assert.doesNotMatch(bundle, /Partially complete/);
   assert.doesNotMatch(bundle, /Evidence status/);
   assert.doesNotMatch(bundle, /Action required/);
+});
+
+test("research register exposes the corrected 2018 authors and standardized citation", async () => {
+  const html = await readFile("github-dist/research.html", "utf8");
+  const scriptPath = html.match(/src="(\.\/assets\/[^\"]+\.js)"/)?.[1];
+  assert.ok(scriptPath);
+  const bundle = await readFile(`github-dist/${scriptPath.slice(2)}`, "utf8");
+  assert.match(bundle, /Ankisha Vijay, Shivam Arora, Sandeep Gupta & Meenu Chhabra/);
+  assert.match(bundle, /Standard citation/);
+  assert.doesNotMatch(bundle, /Vijay, A\., Ghosh, P\. C\. & Mukherji, S\. \(2018\)/);
 });

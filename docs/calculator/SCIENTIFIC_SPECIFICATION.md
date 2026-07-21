@@ -337,6 +337,6 @@ Phase 2 may begin after approval of:
 1. the field list and canonical units;
 2. the formula and reconciliation thresholds;
 3. the evidence weights and confidence tiers;
-4. the three validation cases;
+4. the four validation controls: equation, reconciliation, evidence retrieval and domain refusal;
 5. the premium five-step interaction model.
 

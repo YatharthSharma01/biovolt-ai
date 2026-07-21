@@ -1,8 +1,12 @@
 import assert from "node:assert/strict";
+import { readFileSync } from "node:fs";
 import test from "node:test";
 import { calculateMfc, estimateBridgeResistanceOhm, sumCharacterizedResistanceOhm } from "../app/calculatorEngine.ts";
 import { interpretSubstrateConcentration } from "../app/calculatorResearch.ts";
 import { findEvidenceReference } from "../app/calculatorEvidence.ts";
+import { calculatorValidationCases } from "../app/calculatorValidation.ts";
+
+const validationManifest = JSON.parse(readFileSync(new URL("../docs/calculator/validation-cases.json", import.meta.url), "utf8"));
 
 const base = {
   loadMode: "resistor",
@@ -117,4 +121,14 @@ test("unsupported electricity configuration refuses a numerical reference", () =
   }, "power");
   assert.equal(reference.tier, "outside_domain");
   assert.equal(reference.value, null);
+});
+
+test("scientific validation suite covers equation, reconciliation, retrieval and refusal", () => {
+  assert.equal(calculatorValidationCases.length, 4);
+  assert.deepEqual(
+    calculatorValidationCases.map((item) => item.category),
+    ["Equation control", "Reconciliation guardrail", "Evidence retrieval", "Domain refusal"],
+  );
+  assert.ok(calculatorValidationCases.every((item) => /passed/i.test(item.status)));
+  assert.deepEqual(validationManifest.cases.map((item) => item.id), calculatorValidationCases.map((item) => item.id));
 });
