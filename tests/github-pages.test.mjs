@@ -97,4 +97,5 @@ test("experiment page includes the revised operating record", async () => {
   ]) assert.match(bundle, new RegExp(phrase.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")));
   assert.doesNotMatch(bundle, /Scope note/);
   assert.doesNotMatch(bundle, /Partially complete/);
+  assert.doesNotMatch(bundle, /Evidence status/);
 });

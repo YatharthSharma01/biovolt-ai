@@ -81,6 +81,7 @@ test("publishes the complete literature register and researcher profile", async 
   assert.doesNotMatch(experimentHtml, /presentation/i);
   assert.doesNotMatch(experimentHtml, /Scope note/);
   assert.doesNotMatch(experimentHtml, /Partially complete/);
+  assert.doesNotMatch(experimentHtml, /Evidence status/);
 
   const home = await render();
   const homeHtml = await home.text();

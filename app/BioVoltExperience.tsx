@@ -387,7 +387,6 @@ export function ExperimentView({ staticMode = false }: { staticMode?: boolean })
         <div className="growth-heading"><p className="journal-kicker">Pseudomonas workbook</p><h2>Pseudomonas growth curve</h2><p>Maximum recorded absorbance: <b>0.71</b> at time values 25–29. Final recorded absorbance: <b>0.66</b> at time 50. The maximum observed MFC voltage associated with <i>Pseudomonas aeruginosa</i> was <b>1.21 mV</b>.</p></div>
         <figure><GrowthCurve /><figcaption><b>Figure 5.</b> Reconstructed from the supplied spreadsheet. Time units, measurement wavelength and replicate count remain unconfirmed, so this record is not merged with the halophile experiment.</figcaption></figure>
       </section>
-      <section className="paper-spread provenance-ledger"><SectionLabel number="02.11">Evidence status</SectionLabel>{[["Measured","Values retained in spreadsheet"],["Recorded","Condition or result retained in the experimental record"],["Image-derived","Approximate value interpreted from graph or photograph"],["Missing","Required value absent from the available record"]].map(([label, copy]) => <div key={label}><i className={`provenance-dot ${label.toLowerCase()}`} /><b>{label}</b><span>{copy}</span></div>)}</section>
       <NextArticle page="calculator" label="03 — MFC calculator" staticMode={staticMode} />
       <SiteFooter staticMode={staticMode} />
     </main>
