@@ -18,6 +18,7 @@ test("GitHub Pages build contains six linked page entries", async () => {
     assert.match(html, /\.\/assets\/[^\"]+\.js/, file);
     assert.match(html, new RegExp(`data-page="${page}"`), file);
     assert.match(html, /BioVolt Labs/, file);
+    assert.match(html, /brands\/biovolt-labs-logo\.png/, file);
   }
 });
 
@@ -49,6 +50,7 @@ test("historical MFC images are included in the static artifact", async () => {
     access("github-dist/images/catalase-water.jpeg"),
     access("github-dist/images/tsi-test.jpeg"),
     access("github-dist/og.png"),
+    access("github-dist/brands/biovolt-labs-logo.png"),
     access("github-dist/brands/github-invertocat-white.png"),
     access("github-dist/brands/linkedin-in-white.png"),
     access("github-dist/brands/x-logo-white.png"),

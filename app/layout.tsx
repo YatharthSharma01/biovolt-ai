@@ -34,6 +34,10 @@ export async function generateMetadata(): Promise<Metadata> {
     description:
       "An evidence-led microbial fuel-cell research platform and digital twin.",
     applicationName: "BioVolt Labs",
+    icons: {
+      icon: "/brands/biovolt-labs-logo.png",
+      apple: "/brands/biovolt-labs-logo.png",
+    },
     authors: [{ name: "Yatharth Sharma" }],
     keywords: [
       "microbial fuel cell",

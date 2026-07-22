@@ -44,6 +44,10 @@ function pageHref(page: PageKey, staticMode: boolean) {
   return staticMode ? staticPageHrefs[page] : hostedPageHrefs[page];
 }
 
+function brandAsset(file: string, staticMode: boolean) {
+  return staticMode ? `brands/${file}` : `/brands/${file}`;
+}
+
 const directoryDescriptions: Record<Exclude<PageKey, "home">, string> = {
   research: "Literature register",
   experiment: "Laboratory experiment record",
@@ -60,7 +64,13 @@ export function SiteHeader({ active, staticMode = false, overHero = false }: {
   return (
     <header className={`site-header ${overHero ? "site-header--hero" : ""}`}>
       <a className="brand" href={pageHref("home", staticMode)} aria-label="BioVolt Labs home">
-        <span className="brand-mark">BV</span>
+        <img
+          className="brand-logo brand-logo--header"
+          src={brandAsset("biovolt-labs-logo.png", staticMode)}
+          alt=""
+          width="621"
+          height="1024"
+        />
         <span className="brand-copy"><strong>BioVolt Labs</strong><small>MFC research intelligence</small></span>
       </a>
       <nav className="primary-nav" aria-label="Primary navigation">
@@ -76,11 +86,19 @@ export function SiteHeader({ active, staticMode = false, overHero = false }: {
 }
 
 export function SiteFooter({ staticMode = false }: { staticMode?: boolean }) {
-  const brandAsset = (file: string) => staticMode ? `brands/${file}` : `/brands/${file}`;
   return (
     <footer className="journal-footer">
       <div className="footer-topline">
-        <a className="footer-brand" href={pageHref("home", staticMode)}><span>BV</span> BioVolt Labs</a>
+        <a className="footer-brand" href={pageHref("home", staticMode)}>
+          <img
+            className="brand-logo brand-logo--footer"
+            src={brandAsset("biovolt-labs-logo.png", staticMode)}
+            alt=""
+            width="621"
+            height="1024"
+          />
+          BioVolt Labs
+        </a>
         <p>Independent research platform / Edition 01 / 2026</p>
       </div>
       <div className="footer-grid">
@@ -96,9 +114,9 @@ export function SiteFooter({ staticMode = false }: { staticMode?: boolean }) {
         <div>
           <p className="footer-kicker">Research profiles</p>
           <div className="social-row" aria-label="Research profiles">
-            <a href="https://github.com/YatharthSharma01/biovolt-ai" target="_blank" rel="noreferrer" aria-label="BioVolt Labs on GitHub"><img src={brandAsset("github-invertocat-white.png")} alt="" /></a>
-            <a href="https://www.linkedin.com/in/yatharth-sharma-a13395288/" target="_blank" rel="noreferrer" aria-label="Yatharth Sharma on LinkedIn"><img src={brandAsset("linkedin-in-white.png")} alt="" /></a>
-            <span aria-label="X profile link pending" title="Profile link pending"><img src={brandAsset("x-logo-white.png")} alt="" /></span>
+            <a href="https://github.com/YatharthSharma01/biovolt-ai" target="_blank" rel="noreferrer" aria-label="BioVolt Labs on GitHub"><img src={brandAsset("github-invertocat-white.png", staticMode)} alt="" /></a>
+            <a href="https://www.linkedin.com/in/yatharth-sharma-a13395288/" target="_blank" rel="noreferrer" aria-label="Yatharth Sharma on LinkedIn"><img src={brandAsset("linkedin-in-white.png", staticMode)} alt="" /></a>
+            <span aria-label="X profile link pending" title="Profile link pending"><img src={brandAsset("x-logo-white.png", staticMode)} alt="" /></span>
           </div>
           <small className="profile-note">GitHub and LinkedIn are live. X profile coming soon.</small>
         </div>

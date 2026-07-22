@@ -1,4 +1,10 @@
-# Official social brand assets
+# Brand assets
+
+## BioVolt Labs identity
+
+- `biovolt-labs-logo.png` - project artwork supplied by Yatharth Sharma and used in the website header and footer.
+
+## Official social brand assets
 
 Retrieved from the official brand packages on 22 July 2026. The white variants are used unchanged in the dark BioVolt Labs footer.
 
