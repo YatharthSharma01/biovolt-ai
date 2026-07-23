@@ -1,6 +1,6 @@
 "use client";
 
-/* eslint-disable @next/next/no-img-element -- shared with the static GitHub Pages build */
+/* eslint-disable @next/next/no-img-element -- shared with the static GitHub Pagess build */
 
 import { useEffect, useMemo, useRef, useState } from "react";
 import { papers, type PaperKind } from "./researchData";
