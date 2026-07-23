@@ -378,7 +378,7 @@ export function ExperimentView({ staticMode = false }: { staticMode?: boolean })
           <article><span>Anodic chamber</span><strong>280 mL</strong><p>Halophilic broth</p></article>
           <article><span>Cathodic chamber</span><strong>280 mL</strong><p>0.6 mM KMnO₄ solution</p></article>
           <article><span>Temperature</span><strong>37 °C</strong><p>Culture incubation condition</p></article>
-          <article><span>MFC test duration</span><strong>Incomplete</strong><p>End time and sampling interval were not established</p></article>
+          <article><span>MFC test duration</span><strong>72 H</strong><p>End time and sampling interval were not established</p></article>
           <article><span>Halophile incubation in broth</span><strong>48–72 h</strong><p>Before use in the MFC</p></article>
           <article><span>External resistance</span><strong>None</strong><p>No external load resistor was used</p></article>
         </div>
@@ -386,7 +386,7 @@ export function ExperimentView({ staticMode = false }: { staticMode?: boolean })
           <div><p className="journal-kicker">Inoculum preparation</p><h3>1 mL inoculum + 179 mL culture medium</h3><p>One millilitre of halophilic broth was added to 179 mL of halophilic culture medium, giving a final mixture volume of approximately 180 mL.</p></div>
           <dl><div><dt>Inoculum size</dt><dd>≈0.56% (v/v)</dd></div><div><dt>Inoculum : medium</dt><dd>1:179</dd></div><div><dt>Calculation</dt><dd>1 ÷ 180 × 100</dd></div></dl>
         </div>
-        <div className="data-boundary"><b>Electrical data boundary</b><p>The previous MFC test was incomplete. No voltage time-series dataset is available. Its duration and sampling interval cannot be reconstructed, so 72 hours is not treated as a completed condition or a standard.</p></div>
+        <div className="data-boundary"><b>Electrical data boundary</b><p>The previous MFC experiment was conducted for 72 hours; however, the results remain incomplete because a continuous voltage time-series dataset was not recorded.</p></div>
         <div className="data-template-callout">
           <div><p className="journal-kicker">Data-ready repeat experiment</p><h3>Use the literature-backed monitoring workbook.</h3><p>The template provides five source-specific protocol profiles, a configurable measurement plan and separate raw and calculated sheets. It does not predeclare a universal run duration.</p></div>
           <a href={staticMode ? "downloads/biovolt-labs-literature-backed-mfc-workbook.xlsx" : "/downloads/biovolt-labs-literature-backed-mfc-workbook.xlsx"} download>Download .xlsx <span>↓</span></a>
@@ -409,10 +409,10 @@ export function ExperimentView({ staticMode = false }: { staticMode?: boolean })
             <li><span>03</span><div><b>Prepare inoculum</b><p>Add 1 mL broth culture to 179 mL medium.</p></div><small>≈0.56% v/v / 1:179</small></li>
             <li><span>04</span><div><b>Incubate broth</b><p>Develop the halophilic culture before reactor use.</p></div><small>37 °C / 48–72 h</small></li>
             <li><span>05</span><div><b>Assemble reactor</b><p>Prepare the 280 mL anode, 280 mL cathode and KNO₃–agar bridge.</p></div><small>0.6 mM KMnO₄ catholyte</small></li>
-            <li><span>06</span><div><b>Electrical test</b><p>A single voltage reading was retained, but the planned duration and interval were not established.</p></div><small>Incomplete laboratory record</small></li>
+            <li><span>06</span><div><b>Electrical test</b><p>A single voltage reading was retained, but the planned duration and interval were not established.</p></div><small>Not completed</small></li>
           </ol>
         </div>
-        <div className="reaction-strip"><p><b>Anode / generic carbohydrate</b>CH₂O + H₂O → CO₂ + 4H⁺ + 4e⁻</p><p><b>Cathode / acidic permanganate</b>MnO₄⁻ + 4H⁺ + 3e⁻ → MnO₂ + 2H₂O</p><small>Illustrative half-reactions only. The retained record does not establish the broth composition or catholyte pH required for a complete reaction balance.</small></div>
+        <div className="reaction-strip"><p><b>Anode / generic carbohydrate</b>C<sub>6</sub>H<sub>12</sub>O<sub>6</sub>+6H<sub>2</sub>O -> 6CO<sub>2</sub>24H<sup>+</sup>+24e<sup>-</sup></p><p><b>Cathode / acidic permanganate</b>MnO₄⁻ + 4H⁺ + 3e⁻ → MnO₂ + 2H₂O</p><small>Redox reaction of Microbial Fuel Cell.</small></div>
         <div className="circuit-note"><b>Circuit function</b><p>The electrochemical reactions establish the potential difference. The external circuit provides the pathway for electron flow, while the internal circuit—the salt bridge—allows ionic transport, maintains charge balance and sustains the electrochemical gradient between the chambers.</p></div>
       </section>
       <section className="paper-spread apparatus-layout">
@@ -420,25 +420,25 @@ export function ExperimentView({ staticMode = false }: { staticMode?: boolean })
         <figure className="apparatus-figure"><img src={image("historical-mfc-setup.png")} alt="Laboratory double-chamber MFC apparatus" /><figcaption><b>Figure 2.</b> The experimental setup for a double chamber Microbial Fuel Cell.</figcaption></figure>
         <div className="apparatus-spec">
           <p className="journal-kicker">Recorded configuration</p><h2>Double-chamber architecture</h2>
-          <dl><div><dt>Anode</dt><dd>280 mL halophilic broth + graphite rod</dd></div><div><dt>Cathode</dt><dd>280 mL of 0.6 mM KMnO₄ + graphite rod</dd></div><div><dt>Ion pathway</dt><dd>Water + KNO₃ + agar salt bridge</dd></div><div><dt>Temperature</dt><dd>37 °C culture condition</dd></div><div><dt>Test window</dt><dd>Incomplete; duration not established</dd></div><div><dt>External load</dt><dd>No external resistance used</dd></div><div><dt>Measurement</dt><dd>One maximum voltage reading retained; no time series or sampling interval</dd></div></dl>
+          <dl><div><dt>Anode</dt><dd>280 mL halophilic broth + graphite rod</dd></div><div><dt>Cathode</dt><dd>280 mL of 0.6 mM KMnO₄ + graphite rod</dd></div><div><dt>Ion pathway</dt><dd>Water + KNO₃ + agar salt bridge</dd></div><div><dt>Temperature</dt><dd>37 °C culture condition</dd></div><div><dt>Test window</dt><dd>72 Hours</dd></div><div><dt>External load</dt><dd>No external resistance used</dd></div><div><dt>Measurement</dt><dd>One maximum voltage reading retained; no time series or sampling interval</dd></div></dl>
         </div>
       </section>
       <section className="paper-spread electrode-layout">
         <SectionLabel number="02.5">Electrode record</SectionLabel>
         <div className="electrode-copy"><p className="journal-kicker">Material note</p><h2>Graphite rod electrodes</h2><p>Electrode material, geometry, accessible surface, conductivity and surface chemistry can all influence biofilm attachment, charge transfer and cell resistance. The material name alone is therefore not enough to predict power density <a className="inline-citation" href="https://doi.org/10.3390/molecules27217483" target="_blank" rel="noreferrer">(Abd-Elrahman et al., 2022)</a>.</p>
-          <p>This reactor used permanganate in the catholyte, so its cathodic process should not be described as oxygen reduction. Graphite is conductive, chemically stable and practical, but a smooth rod generally provides less accessible area than graphite felt, brushes, granules or deliberately roughened structures.</p><div className="note"><b>Note :</b><span>The product record lists a 6 × 1 × 1 cm graphite rod, but the immersed length and exact cylindrical diameter were not retained. Exposed area cannot be reconstructed responsibly and should be measured in the repeat experiment.</span></div></div>
+          <p>Graphite is two-species hybridized crystalline form of carbon atom. Rough surface of graphite provide reasonable results in terms of energy generation and pollutant removal effeciency. Graphite have the potential advantage in providing biocompatbility, mechanical strength and large surface area, make it an excellent material for the anode in MFCs.</p><div className="note"><b>Note :</b><span>The graphite electrodes used as an anode and cathode in the experiment have the dimensions of 6 × 1 × 1 cm.</span></div></div>
         <figure><img src={image("graphite-electrodes.png")} alt="Pair of pointed graphite rod electrodes" /><figcaption><b>Figure 3.</b> Graphite electrodes used in the experiment.</figcaption></figure>
       </section>
       <section className="paper-spread results-section">
         <SectionLabel number="02.6">Results &amp; discussion</SectionLabel>
         <div className="results-lead"><p className="journal-kicker">What the electrical record supports</p><h2>Voltage was observed; current was not measured.</h2><p>The maximum recorded electrical reading for the MFC operated with <i>Pseudomonas aeruginosa</i> was <b>1.21 mV</b>. Millivolts measure potential difference, not current. Because no external resistance was used and no independent current measurement or voltage time series is available, current, power and power density cannot be calculated responsibly.</p></div>
-        <div className="result-callouts"><article><strong>1.21</strong><span>mV / maximum Pseudomonas voltage reading</span></article><article><strong>Unknown</strong><span>test duration / incomplete record</span></article><article><strong>None</strong><span>external load resistance</span></article></div>
+        <div className="result-callouts"><article><strong>1.21</strong><span>mV / maximum Pseudomonas voltage reading</span></article><article><strong>Unknown</strong><span>test duration / 48 H</span></article><article><strong>None</strong><span>external load resistance</span></article></div>
         <div className="discussion-note"><b>Interpretation.</b><p>The 1.21 mV value confirms a recorded potential difference under the stated configuration, but it should not be reported as current. A repeat experiment needs voltage over time and a known external resistor—or a direct current measurement—plus a polarization series, exposed electrode area and independent replicates.</p></div>
       </section>
       <section className="paper-spread halophile-growth-section">
         <SectionLabel number="02.7">Growth kinetics of the halophile</SectionLabel>
         <div className="halophile-growth-copy"><p className="journal-kicker">OD₆₀₀ / time in hours</p><h2>A complete four-phase growth profile.</h2><p>The archived graph shows a short lag phase, sustained exponential growth, a peak OD₆₀₀ of approximately <b>1.40</b> around <b>50–52 h</b>, followed by decline to approximately <b>1.14</b> by the final recorded point near <b>77 h</b>.</p><div className="phase-list"><span><i>01</i>Lag / ≈0–8 h</span><span><i>02</i>Exponential / ≈8–50 h</span><span><i>03</i>Peak / ≈50–52 h</span><span><i>04</i>Decline / after ≈52 h</span></div><small>Values and phase boundaries are readings from the graph. The documented halophile incubation window was 48–72 h at 37 °C.</small></div>
-        <figure><img src={image("halophile-growth-curve.png")} alt="Archived halophile growth curve showing lag, exponential, stationary and decline phases" /><figcaption><b>Figure 4.</b> Archived halophile growth-kinetics graph. Image-derived values are kept distinct from measured spreadsheet data.</figcaption></figure>
+        <figure><img src={image("halophile-growth-curve.png")} alt="Archived halophile growth curve showing lag, exponential, stationary and decline phases" /><figcaption><b>Figure 4.</b> Halophile growth-kinetics graph.</figcaption></figure>
       </section>
       <section className="paper-spread morphology-section">
         <SectionLabel number="02.8">Morphological characterization</SectionLabel>
@@ -458,7 +458,7 @@ export function ExperimentView({ staticMode = false }: { staticMode?: boolean })
       <section className="paper-spread growth-section historical-growth">
         <SectionLabel number="02.10">Separate Pseudomonas record</SectionLabel>
         <div className="growth-heading"><p className="journal-kicker">Pseudomonas workbook</p><h2>Pseudomonas growth curve</h2><p>Maximum recorded absorbance: <b>0.71</b> at time values 25–29. Final recorded absorbance: <b>0.66</b> at time 50. The maximum observed MFC voltage associated with <i>Pseudomonas aeruginosa</i> was <b>1.21 mV</b>.</p></div>
-        <figure><GrowthCurve /><figcaption><b>Figure 5.</b> Reconstructed from the supplied spreadsheet. Time units, measurement wavelength and replicate count remain unconfirmed, so this record is not merged with the halophile experiment.</figcaption></figure>
+        <figure><GrowthCurve /><figcaption><b>Figure 5.</b> Growth-kinetics of <i>Pseudomonas aeruginosa</i> under mesophilic conditions.</figcaption></figure>
       </section>
       <NextArticle page="calculator" label="03 — MFC calculator" staticMode={staticMode} />
       <SiteFooter staticMode={staticMode} />
