@@ -117,8 +117,8 @@ test("experiment page separates the incomplete record from literature monitoring
     "different intervals, but the exact interval was not reported",
     "test duration / incomplete record",
     "Download .xlsx",
-    "should not be described as oxygen reduction",
-    "Exposed area cannot be reconstructed responsibly",
+"Redox reaction of Microbial Fuel Cell.",
+"The material name alone is therefore not enough to predict power density",
   ]) assert.match(bundle, new RegExp(phrase.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")));
   assert.doesNotMatch(bundle, /Scope note/);
   assert.doesNotMatch(bundle, /Partially complete/);
